@@ -3,6 +3,8 @@ LOCAL_PATH := device/samsung/heatqlte
 # Inherit from qualcomm-common
 include device/samsung/qcom-common/BoardConfigCommon.mk
 
+include $(LOCAL_PATH)/board/*.mk
+
 # Init
 TARGET_PLATFORM_DEVICE_BASE := /devices/soc.0/
 
