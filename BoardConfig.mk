@@ -1,5 +1,8 @@
 LOCAL_PATH := device/samsung/heatqlte
 
+# Inherit from qualcomm-common
+include device/samsung/qcom-common/BoardConfigCommon.mk
+
 #TODO: create fstab
 
 # Kernel
@@ -7,6 +10,7 @@ TARGET_KERNEL_SOURCE := kernel/samsung/heatqlte
 TARGET_KERNEL_CONFIG := heatqlte_defconfig
 
 BOARD_CUSTOM_BOOTIMG_MK := $(LOCAL_PATH)/mkbootimg.mk
+BOARD_DTBTOOL_ARGS := -2
 BOARD_KERNEL_SEPARATED_DT := true
 BOARD_KERNEL_PAGESIZE := 2048
 BOARD_KERNEL_BASE := 0x80000000
@@ -33,7 +37,7 @@ TARGET_ARCH_VARIANT := armv7-a-neon
 TARGET_CPU_VARIANT := cortex-a53
 TARGET_CPU_SMP := true
 
-TARGET_BOOTLOADER_BOARD_NAME := msm8916
+TARGET_BOOTLOADER_BOARD_NAME := MSM8916
 
 # Partition sizes
 BOARD_BOOTIMAGE_PARTITION_SIZE := 13631488
