@@ -3,7 +3,8 @@ LOCAL_PATH := device/samsung/heatqlte
 # Inherit from qualcomm-common
 include device/samsung/qcom-common/BoardConfigCommon.mk
 
-#TODO: create fstab
+# Init
+TARGET_PLATFORM_DEVICE_BASE := /devices/soc.0/
 
 # Kernel
 TARGET_KERNEL_SOURCE := kernel/samsung/heatqlte
@@ -27,17 +28,23 @@ BOARD_KERNEL_CMDLINE += \
 	ehci-hcd.park=3 \
 	androidboot.bootdevice=7824900.sdhci
 
-# Arch
+# Platform
 TARGET_ARCH := arm
-TARGET_NO_BOOTLOADER := true
-TARGET_BOARD_PLATFORM := msm8916
 TARGET_CPU_ABI := armeabi-v7a
 TARGET_CPU_ABI2 := armeabi
 TARGET_ARCH_VARIANT := armv7-a-neon
-TARGET_CPU_VARIANT := cortex-a53
-TARGET_CPU_SMP := true
+TARGET_BOARD_PLATFORM := msm8916
+TARGET_BOARD_PLATFORM_GPU := qcom-adreno306
+BOARD_VENDOR := samsung
 
-TARGET_BOOTLOADER_BOARD_NAME := MSM8916
+FORCE_32_BIT := true
+
+# Architecture
+TARGET_CPU_SMP := true
+TARGET_CPU_VARIANT := cortex-a53
+TARGET_CPU_CORTEX_A53 := true
+TARGET_GLOBAL_CFLAGS += -mfpu=neon -mfloat-abi=softfp
+TARGET_GLOBAL_CPPFLAGS += -mfpu=neon -mfloat-abi=softfp
 
 # Partition sizes
 BOARD_BOOTIMAGE_PARTITION_SIZE := 13631488
@@ -47,5 +54,17 @@ BOARD_USERDATAIMAGE_PARTITION_SIZE := 5509201920
 BOARD_CACHEIMAGE_PARTITION_SIZE := 524288000
 BOARD_FLASH_BLOCK_SIZE := 131072
 
-# ETC
-BOARD_HAS_NO_SELECT_BUTTON := true
+# Malloc implementation
+MALLOC_SVELTE := true
+
+# Protobuf
+PROTOBUF_SUPPORTED := true
+
+# Qualcomm support
+TARGET_USES_QCOM_BSP := true
+HAVE_SYNAPTICS_I2C_RMI4_FW_UPGRADE   := true
+USE_DEVICE_SPECIFIC_QCOM_PROPRIETARY := true
+TARGET_USES_NEW_ION_API := true
+
+# Time services
+BOARD_USES_QC_TIME_SERVICES := true
