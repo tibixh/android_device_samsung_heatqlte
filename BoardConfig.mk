@@ -3,6 +3,7 @@ LOCAL_PATH := device/samsung/heatqlte
 # Inherit from qualcomm-common
 include device/samsung/qcom-common/BoardConfigCommon.mk
 
+# Includes
 include $(LOCAL_PATH)/board/*.mk
 
 # Init
@@ -63,7 +64,7 @@ MALLOC_SVELTE := true
 PROTOBUF_SUPPORTED := true
 
 # Qualcomm support
-TARGET_USES_QCOM_BSP := true
+#TARGET_USES_QCOM_BSP := true
 HAVE_SYNAPTICS_I2C_RMI4_FW_UPGRADE   := true
 USE_DEVICE_SPECIFIC_QCOM_PROPRIETARY := true
 TARGET_USES_NEW_ION_API := true
