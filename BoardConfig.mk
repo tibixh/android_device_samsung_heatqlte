@@ -6,6 +6,9 @@ include device/samsung/qcom-common/BoardConfigCommon.mk
 # Includes
 include $(LOCAL_PATH)/board/*.mk
 
+# Asserts
+TARGET_OTA_ASSERT_DEVICE := heatqlte,heatqltexx,g357fz,sm-g357fz
+
 # Init
 TARGET_PLATFORM_DEVICE_BASE := /devices/soc.0/
 
