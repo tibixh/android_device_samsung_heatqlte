@@ -1,6 +1,6 @@
 LOCAL_PATH := device/samsung/heatqlte
 
-# Inherit from qualcomm-common
+# Inherit from common
 include device/samsung/qcom-common/BoardConfigCommon.mk
 
 # Includes
@@ -10,6 +10,7 @@ include $(LOCAL_PATH)/board/*.mk
 TARGET_OTA_ASSERT_DEVICE := heatqlte,heatqltexx,g357fz,sm-g357fz
 
 # Init
+TARGET_INIT_VENDOR_LIB := libinit_msm
 TARGET_PLATFORM_DEVICE_BASE := /devices/soc.0/
 
 # Kernel
@@ -32,25 +33,20 @@ BOARD_KERNEL_CMDLINE += \
 	user_debug=31 \
 	msm_rtb.filter=0x3F \
 	ehci-hcd.park=3 \
-	androidboot.bootdevice=7824900.sdhci
+	androidboot.bootdevice=7824900.sdhci \
+	androidboot.selinux=permissive
 
 # Platform
-TARGET_ARCH := arm
-TARGET_CPU_ABI := armeabi-v7a
-TARGET_CPU_ABI2 := armeabi
-TARGET_ARCH_VARIANT := armv7-a-neon
-TARGET_BOARD_PLATFORM := msm8916
-TARGET_BOARD_PLATFORM_GPU := qcom-adreno306
-BOARD_VENDOR := samsung
-
-FORCE_32_BIT := true
-
-# Architecture
-TARGET_CPU_SMP := true
 TARGET_CPU_VARIANT := cortex-a53
 TARGET_CPU_CORTEX_A53 := true
 TARGET_GLOBAL_CFLAGS += -mfpu=neon -mfloat-abi=softfp
 TARGET_GLOBAL_CPPFLAGS += -mfpu=neon -mfloat-abi=softfp
+TARGET_BOARD_PLATFORM := msm8916
+TARGET_BOARD_PLATFORM_GPU := qcom-adreno306
+FORCE_32_BIT := true
+
+# Bootloader
+TARGET_BOOTLOADER_BOARD_NAME := MSM8916
 
 # Partition sizes
 BOARD_BOOTIMAGE_PARTITION_SIZE := 13631488
@@ -61,16 +57,43 @@ BOARD_CACHEIMAGE_PARTITION_SIZE := 524288000
 BOARD_FLASH_BLOCK_SIZE := 131072
 
 TARGET_USERIMAGES_USE_EXT4 := true
-BOARD_SYSTEMIMAGE_PARTITION_TYPE    := ext4
+BOARD_SYSTEMIMAGE_PARTITION_TYPE := ext4
 
-# Malloc implementation
-MALLOC_SVELTE := true
+# ANT+
+BOARD_ANT_WIRELESS_DEVICE := "vfs-prerelease"
 
-# Protobuf
+# Audio
+AUDIO_FEATURE_DEEP_BUFFER_RINGTONE := true
+AUDIO_FEATURE_ENABLED_KPI_OPTIMIZE := true
+AUDIO_FEATURE_LOW_LATENCY_PRIMARY := true
+BOARD_USES_ALSA_AUDIO := true
+
+# Bluetooth
+BOARD_HAVE_BLUETOOTH := true
+BOARD_HAVE_BLUETOOTH_QCOM := true
+BLUETOOTH_HCI_USE_MCT := true
+
+# RIL
+TARGET_RIL_VARIANT := caf
 PROTOBUF_SUPPORTED := true
+
+# malloc implementation
+MALLOC_IMPL := dlmalloc
+
+# Power
+TARGET_POWERHAL_VARIANT := qcom
+
+# FM
+AUDIO_FEATURE_ENABLED_FM := true
+TARGET_QCOM_NO_FM_FIRMWARE := true
 
 # Qualcomm support
 TARGET_USES_QCOM_BSP := true
+TARGET_QCOM_DISPLAY_VARIANT := caf-msm8916
+
+COMMON_GLOBAL_CFLAGS += -DQCOM_BSP
+
+#TARGET_HAVE_NEW_GRALLOC := true
 HAVE_SYNAPTICS_I2C_RMI4_FW_UPGRADE   := true
 USE_DEVICE_SPECIFIC_QCOM_PROPRIETARY := true
 TARGET_USES_NEW_ION_API := true
