@@ -1,6 +1,6 @@
 # android_device_samsung_heatqlte
 
-## Device tree for Samsung Galaxy Ace Style LTE G357-FZ [heatqlte]
+## Device tree for Samsung Galaxy Ace Style LTE SM-G357FZ [heatqlte]
 
 Basic   | Spec Sheet
 -------:|:-------------------------
