@@ -153,14 +153,14 @@ config_bt ()
            setprop ro.qualcomm.bt.hci_transport smd
        fi
        ;;
-    "msm8974" | "msm8226" | "msm8610" | "msm8916" )
+    "msm8974" | "msm8226" | "msm8610" | "msm8916" | "msm8909" )
        if [ "$btsoc" != "ath3k" ]
        then
            setprop ro.bluetooth.hfp.ver 1.6
            setprop ro.qualcomm.bt.hci_transport smd
        fi
        ;;
-    "apq8084" | "mpq8092" )
+    "apq8084" | "mpq8092" | "msm8994" )
        if [ "$btsoc" != "rome" ]
        then
            setprop ro.qualcomm.bt.hci_transport smd
@@ -248,6 +248,9 @@ STACK=`getprop ro.qc.bluetooth.stack`
 POWER_CLASS=`getprop qcom.bt.dev_power_class`
 LE_POWER_CLASS=`getprop qcom.bt.le_dev_pwr_class`
 
+# BR/EDR RF power backoff
+POWER_BACKOFF=`getprop qcom.bt.dev_power_backoff`
+
 #find the transport type
 TRANSPORT=`getprop ro.qualcomm.bt.hci_transport`
 logi "Transport : $TRANSPORT"
@@ -286,7 +289,20 @@ case $LE_POWER_CLASS in
      logi "LE Power Class: To override, Before turning BT ON; setprop qcom.bt.le_dev_pwr_class <1 or 2 or 3>";;
 esac
 
-eval $(/system/bin/hci_qcomm_init -e $PWR_CLASS $LE_PWR_CLASS && echo "exit_code_hci_qcomm_init=0" || echo "exit_code_hci_qcomm_init=1")
+case $POWER_BACKOFF in
+   0) POWER_BACKOFF="-k 0" ;
+      logi "Power Backoff: 0";;
+   1) POWER_BACKOFF="-k 1" ;
+      logi "Power Backoff: 1";;
+   2) POWER_BACKOFF="-k 2" ;
+      logi "Power Backoff: 2";;
+   3) POWER_BACKOFF="-k 3" ;
+      logi "Power Backoff: 3";;
+   *) POWER_BACKOFF="";
+      logi "Power Backoff: Ignored. Configuration in source code will be used";
+esac
+
+eval $(/system/bin/hci_qcomm_init -e $PWR_CLASS $LE_PWR_CLASS $POWER_BACKOFF && echo "exit_code_hci_qcomm_init=0" || echo "exit_code_hci_qcomm_init=1")
 
 case $exit_code_hci_qcomm_init in
   0) logi "Bluetooth QSoC firmware download succeeded, $BTS_DEVICE $BTS_TYPE $BTS_BAUD $BTS_ADDRESS";;
