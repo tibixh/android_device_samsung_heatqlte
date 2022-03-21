@@ -12,7 +12,6 @@ TARGET_OTA_ASSERT_DEVICE := heatqlte,heatqltexx,g357fz,sm-g357fz
 # Init
 TARGET_INIT_VENDOR_LIB := libinit_msm
 TARGET_PLATFORM_DEVICE_BASE := /devices/soc.0/
-TARGET_PROVIDES_INIT_RC := true
 
 # Kernel
 TARGET_KERNEL_SOURCE := kernel/samsung/heatqlte
