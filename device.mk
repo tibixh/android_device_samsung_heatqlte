@@ -6,7 +6,7 @@ $(call inherit-product-if-exists, vendor/samsung/heatqlte/heatqlte-vendor.mk)
 # Inherit from common
 $(call inherit-product-if-exists, device/samsung/qcom-common/qcom-common.mk)
 
-PRODUCT_PACKAGES += libtime_genoff
+#PRODUCT_PACKAGES += libtime_genoff
 
 # Init
 PRODUCT_COPY_FILES += \

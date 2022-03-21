@@ -49,10 +49,10 @@ FORCE_32_BIT := true
 TARGET_BOOTLOADER_BOARD_NAME := MSM8916
 
 # Charger
-BOARD_CHARGER_ENABLE_SUSPEND := true
-BOARD_CHARGER_SHOW_PERCENTAGE := true
-BOARD_CHARGING_MODE_BOOTING_LPM := /sys/class/power_supply/battery/batt_lp_charging
-CHARGING_ENABLED_PATH := /sys/class/power_supply/battery/batt_lp_charging
+# BOARD_CHARGER_ENABLE_SUSPEND := true
+# BOARD_CHARGER_SHOW_PERCENTAGE := true
+# BOARD_CHARGING_MODE_BOOTING_LPM := /sys/class/power_supply/battery/batt_lp_charging
+# CHARGING_ENABLED_PATH := /sys/class/power_supply/battery/batt_lp_charging
 
 # Partition sizes
 BOARD_BOOTIMAGE_PARTITION_SIZE := 13631488
