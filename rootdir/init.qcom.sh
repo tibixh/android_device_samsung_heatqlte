@@ -32,7 +32,6 @@ if [ -f /sys/devices/soc0/soc_id ]; then
 else
     platformid=`cat /sys/devices/system/soc/soc0/id`
 fi
-
 #
 # Function to start sensors for DSPS enabled platforms
 #
@@ -58,11 +57,11 @@ start_battery_monitor()
 		chown -h root.system /sys/bus/spmi/devices/qpnp-bms-*/fcc_data
 		chown -h root.system /sys/bus/spmi/devices/qpnp-bms-*/fcc_temp
 		chown -h root.system /sys/bus/spmi/devices/qpnp-bms-*/fcc_chgcyl
-		chmod 0660 /sys/module/qpnp_bms/parameters/*
-		chmod 0660 /sys/module/pm8921_bms/parameters/*
+		chmod -h 0660 /sys/module/qpnp_bms/parameters/*
+		chmod -h 0660 /sys/module/pm8921_bms/parameters/*
 		mkdir -p /data/bms
 		chown -h root.system /data/bms
-		chmod 0770 /data/bms
+		chmod -h 0770 /data/bms
 		start battery_monitor
 	fi
 }
@@ -75,29 +74,23 @@ start_charger_monitor()
 		chown -h root.system /sys/class/power_supply/battery/input_current_trim
 		chown -h root.system /sys/class/power_supply/battery/input_current_settled
 		chown -h root.system /sys/class/power_supply/battery/voltage_min
-		chmod 0664 /sys/class/power_supply/battery/input_current_max
-		chmod 0664 /sys/class/power_supply/battery/input_current_trim
-		chmod 0664 /sys/class/power_supply/battery/input_current_settled
-		chmod 0664 /sys/class/power_supply/battery/voltage_min
-		chmod 0664 /sys/module/qpnp_charger/parameters/charger_monitor
+		chmod -h 0664 /sys/class/power_supply/battery/input_current_max
+		chmod -h 0664 /sys/class/power_supply/battery/input_current_trim
+		chmod -h 0664 /sys/class/power_supply/battery/input_current_settled
+		chmod -h 0664 /sys/class/power_supply/battery/voltage_min
+		chmod -h 0664 /sys/module/qpnp_charger/parameters/charger_monitor
 		start charger_monitor
 	fi
 }
 
-start_msm_irqbalance_8939()
+start_vm_bms()
 {
-	if [ -f /system/bin/msm_irqbalance ]; then
-		case "$platformid" in
-		    "239" | "241" | "263" | "268" | "269" | "270" | "271")
-			start msm_irqbalance;;
-		esac
-	fi
-}
-
-start_msm_irqbalance()
-{
-	if [ -f /system/bin/msm_irqbalance ]; then
-		start msm_irqbalance
+	if [ -e /dev/vm_bms ]; then
+		chown -h root.system /sys/class/power_supply/bms/current_now
+		chown -h root.system /sys/class/power_supply/bms/voltage_ocv
+		chmod -h 0664 /sys/class/power_supply/bms/current_now
+		chmod -h 0664 /sys/class/power_supply/bms/voltage_ocv
+		start vm_bms
 	fi
 }
 
@@ -192,22 +185,6 @@ case "$target" in
         start_charger_monitor
         ;;
     "msm8916")
-        start_msm_irqbalance_8939
+        start_vm_bms
         ;;
-    "msm8994")
-        start_msm_irqbalance
-        ;;
-    "msm8909")
-        ;;
-esac
-
-bootmode=`getprop ro.bootmode`
-emmc_boot=`getprop ro.boot.emmc`
-case "$emmc_boot"
-    in "true")
-        if [ "$bootmode" != "charger" ]; then # start rmt_storage and rfs_access
-            start rmt_storage
-            start rfs_access
-        fi
-    ;;
 esac

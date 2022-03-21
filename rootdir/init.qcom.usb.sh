@@ -78,7 +78,8 @@ for f in /sys/bus/esoc/devices/*; do
 done
 fi
 
-target=`getprop ro.board.platform`
+target=`getprop ro.product.device`
+target=${target:0:7}
 
 #
 # Allow USB enumeration with default PID/VID
@@ -118,19 +119,13 @@ case "$usb_config" in
               ;;
               *)
 		case "$target" in
-                        "msm8916")
-                            setprop persist.sys.usb.config diag,serial_smd,rmnet_bam,adb
-                        ;;
-                        "msm8994")
-                            setprop persist.sys.usb.config diag,serial_smd,serial_tty,rmnet_ipa,mass_storage,adb
-                        ;;
-                        "msm8909")
-                            setprop persist.sys.usb.config diag,serial_smd,rmnet_qti_bam,adb
-                        ;;
-                        *)
-                            setprop persist.sys.usb.config diag,serial_smd,serial_tty,rmnet_bam,mass_storage,adb
-                        ;;
-                    esac
+			"msm8916")
+				setprop persist.sys.usb.config diag,serial_smd,rmnet_bam,adb
+			;;
+			*)
+				setprop persist.sys.usb.config diag,serial_smd,serial_tty,rmnet_bam,mass_storage,adb
+			;;
+		esac
               ;;
           esac
           ;;
@@ -158,10 +153,6 @@ case "$target" in
                  echo msm_hsic_host > /sys/bus/platform/drivers/msm_hsic_host/unbind
              fi
          fi
-    ;;
-    "msm8994")
-        echo BAM2BAM_IPA > /sys/class/android_usb/android0/f_rndis_qc/rndis_transports
-        echo 1 > /sys/class/android_usb/android0/f_rndis_qc/max_pkt_per_xfer # Disable RNDIS UL aggregation
     ;;
 esac
 
@@ -226,24 +217,30 @@ case "$target" in
 esac
 
 #
-# Initialize RNDIS Diag option. If unset, set it to 'none'.
+# Add changes to support diag with rndis
 #
 diag_extra=`getprop persist.sys.usb.config.extra`
-if [ "$diag_extra" == "" ]; then
-	setprop persist.sys.usb.config.extra none
-fi
-
-# soc_ids for 8916/8939 differentiation
-if [ -f /sys/devices/soc0/soc_id ]; then
-	soc_id=`cat /sys/devices/soc0/soc_id`
-else
-	soc_id=`cat /sys/devices/system/soc/soc0/id`
-fi
-
-# enable rps cpus on msm8939 target
-setprop sys.usb.rps_mask 0
-case "$soc_id" in
-	"239" | "241" | "263")
-		setprop sys.usb.rps_mask 10
+case "$diag_extra" in
+	"diag" | "diag,diag_mdm" | "diag,diag_mdm,diag_qsc")
+		case "$baseband" in
+			"mdm")
+				setprop persist.sys.usb.config.extra diag,diag_mdm
+			;;
+		        "dsda" | "sglte2" )
+				setprop persist.sys.usb.config.extra diag,diag_mdm,diag_qsc
+			;;
+		        "sglte")
+				setprop persist.sys.usb.config.extra diag,diag_qsc
+			;;
+		        "dsda2")
+				setprop persist.sys.usb.config.extra diag,diag_mdm,diag_mdm2
+			;;
+		        *)
+				setprop persist.sys.usb.config.extra diag
+			;;
+	        esac
+	;;
+        *)
+		setprop persist.sys.usb.config.extra none
 	;;
 esac

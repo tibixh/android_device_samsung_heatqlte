@@ -1,5 +1,5 @@
 #!/system/bin/sh
-# Copyright (c) 2009-2014, The Linux Foundation. All rights reserved.
+# Copyright (c) 2009-2013, The Linux Foundation. All rights reserved.
 #
 # Redistribution and use in source and binary forms, with or without
 # modification, are permitted provided that the following conditions are met:
@@ -65,6 +65,10 @@
     setprop wifi.interface wlan0
 
     setprop ro.telephony.call_ring.multiple false
+
+    #Set SUID bit for usbhub
+    chmod -h 4755 /system/bin/usbhub
+    chmod -h 755 /system/bin/usbhub_init
 
     #Remove SUID bit for iproute2 ip tool
     chmod -h 0755 /system/bin/ip
@@ -202,25 +206,6 @@
     chown -h system.system /sys/kernel/ipv4/tcp_rmem_max
     chown -h root radio /proc/cmdline
 
-# Define TCP buffer sizes for various networks
-#   ReadMin, ReadInitial, ReadMax, WriteMin, WriteInitial, WriteMax,
-    setprop net.tcp.buffersize.default 4096,87380,110208,4096,16384,110208
-    setprop net.tcp.buffersize.wifi    524288,1048576,2097152,262144,524288,1048576
-    setprop net.tcp.buffersize.lte     524288,1048576,2097152,262144,524288,1048576
-    setprop net.tcp.buffersize.umts    4094,87380,110208,4096,16384,110208
-    setprop net.tcp.buffersize.hspa    4094,87380,1220608,4096,16384,1220608
-    setprop net.tcp.buffersize.hsupa   4094,87380,1220608,4096,16384,1220608
-    setprop net.tcp.buffersize.hsdpa   4094,87380,1220608,4096,16384,1220608
-    setprop net.tcp.buffersize.hspap   4094,87380,1220608,4096,16384,1220608
-    setprop net.tcp.buffersize.edge    4093,26280,35040,4096,16384,35040
-    setprop net.tcp.buffersize.gprs    4092,8760,11680,4096,8760,11680
-    setprop net.tcp.buffersize.evdo    4094,87380,262144,4096,16384,262144
-
-# Assign TCP buffer thresholds to be ceiling value of technology maximums
-# Increased technology maximums should be reflected here.
-    echo 2097152 > /proc/sys/net/core/rmem_max
-    echo 2097152 > /proc/sys/net/core/wmem_max
-
 # Set the property to indicate type of virtual display to 0
 # 0 indicates that virtual display is not a Wifi display and that the
 # session is not exercised through RemoteDisplay in the android framework
@@ -229,27 +214,17 @@
 # Set this property so surfaceflinger is not started by system_init
     setprop system_init.startsurfaceflinger 0
 
-# Configurate USB in FFBM mode, two big change for USB.
-# 1) Using diag,adb in FFBM mode, too many interface will cause
-#    problem in factory for multi-line test
-# 2) Not config usb serialnum. Using the default value:"0123456789ABCDEF"
-#    Keep the USB serialnum no change for devices. this fix the problem
-#    of port change for various devices.
-chown -h root.system /sys/devices/platform/msm_hsusb/gadget/wakeup
-chmod -h 220 /sys/devices/platform/msm_hsusb/gadget/wakeup
-setprop persist.sys.usb.config diag,adb
-
 # Start the following services needed for fftm
-    start logd
     start config_bluetooth
     start media
     start fastmmi
-    start wcnss-service
+    start adbd
     start qcom-post-boot
     start rmt_storage
     start qcom-c_main-sh
     start irsc_util
     start qcamerasvr
+    start qcom-usb-sh
     start qcomsysd
     start ptt_ffbm
     start ftm_ffbm

@@ -27,40 +27,18 @@
 #
 
 target=`getprop ro.board.platform`
-action=`getprop sys.usb_uicc.enabled`
-
-if [ -f /sys/devices/soc0/soc_id ]; then
-    soc_hwid=`cat /sys/devices/soc0/soc_id`
-else
-    soc_hwid=`cat /sys/devices/system/soc/soc0/id`
-fi
-
-# No path is set up at this point so we have to do it here.
-PATH=/sbin:/system/sbin:/system/bin:/system/xbin
-export PATH
+action=`getprop usb_uicc.enabled`
 
 uicc_insert()
 {
     case $target in
-    "msm8916")
-        if [ $soc_hwid == "239" ] || [ $soc_hwid == "268" ] || [ $soc_hwid == "269" ] || [ $soc_hwid == "270" ] || [ $soc_hwid == "271" ]; then
-            echo Y > /sys/module/ehci_msm_uicc/parameters/uicc_card_present
-            echo 79c0000.qcom,ehci-host  > /sys/bus/platform/drivers/msm_ehci_uicc/bind
-        elif [ $soc_hwid == "206" ]; then
-            echo Y > /sys/module/ice40_hcd/parameters/uicc_card_present
-            echo spi0.0 > /sys/bus/spi/drivers/ice40_spi/bind
-        else
-            echo "The TARGET ID is $target hw $soc_hwid"
-        fi
-        ;;
-    "msm8610")
+    "msm8610"|"msm8916")
         insmod /system/lib/modules/ice40-hcd.ko
         ;;
     "msm8226")
         echo 1 > /sys/bus/platform/devices/msm_smsc_hub/enable
         ;;
     "msm8974")
-        echo Y > /sys/module/ehci_hcd/parameters/uicc_card_present
         echo msm_ehci_host > /sys/bus/platform/drivers/msm_ehci_host/bind
         ;;
     *)
@@ -72,18 +50,7 @@ uicc_insert()
 uicc_remove()
 {
     case $target in
-    "msm8916")
-        if [ $soc_hwid == "239" ] || [ $soc_hwid == "268" ] || [ $soc_hwid == "269" ] || [ $soc_hwid == "270" ] || [ $soc_hwid == "271" ]; then
-            echo 79c0000.qcom,ehci-host  > /sys/bus/platform/drivers/msm_ehci_uicc/unbind
-            echo N > /sys/module/ehci_msm_uicc/parameters/uicc_card_present
-        elif [ $soc_hwid == "206" ]; then
-            echo spi0.0 > /sys/bus/spi/drivers/ice40_spi/unbind
-            echo N > /sys/module/ice40_hcd/parameters/uicc_card_present
-        else
-            echo "The TARGET ID is $target hw $soc_hwid"
-        fi
-        ;;
-    "msm8610")
+    "msm8610"|"msm8916")
         rmmod /system/lib/modules/ice40-hcd.ko
         ;;
     "msm8226")
@@ -91,7 +58,6 @@ uicc_remove()
         ;;
     "msm8974")
         echo msm_ehci_host > /sys/bus/platform/drivers/msm_ehci_host/unbind
-        echo N > /sys/module/ehci_hcd/parameters/uicc_card_present
         ;;
     *)
         echo "USB_UICC invalid target when remove uicc!"
@@ -102,11 +68,11 @@ uicc_remove()
 case $action in
 "1")
     uicc_insert
-    setprop sys.usb_uicc.loading 1
+    setprop usb_uicc.loading 1
     ;;
 "0")
     uicc_remove
-    setprop sys.usb_uicc.loading 1
+    setprop usb_uicc.loading 1
     ;;
 *)
     echo "USB_UICC invalid action for uicc operation!"
