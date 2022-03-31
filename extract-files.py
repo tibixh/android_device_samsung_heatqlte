@@ -2,7 +2,7 @@ import shutil
 import os
 
 dumpdir = '/home/tibix/android/system_dumps/heatqlte/dump'
-propdir = '../../../vendor/samsung/heatqlte_test/proprietary'
+propdir = '../../../vendor/samsung/heatqlte/proprietary'
 
 files = open('proprietary-files.txt').read().split('\n')
 
