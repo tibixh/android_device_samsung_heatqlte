@@ -54,6 +54,9 @@ TARGET_BOOTLOADER_BOARD_NAME := MSM8916
 # BOARD_CHARGING_MODE_BOOTING_LPM := /sys/class/power_supply/battery/batt_lp_charging
 # CHARGING_ENABLED_PATH := /sys/class/power_supply/battery/batt_lp_charging
 
+# Health
+BOARD_HAL_STATIC_LIBRARIES := healthd-heatqlte.qcom
+
 # Partition sizes
 BOARD_BOOTIMAGE_PARTITION_SIZE := 13631488
 BOARD_RECOVERYIMAGE_PARTITION_SIZE := 15728640
