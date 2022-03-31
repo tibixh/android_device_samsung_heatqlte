@@ -22,9 +22,6 @@ $(call inherit-product, $(SRC_TARGET_DIR)/product/full_base_telephony.mk)
 
 PRODUCT_RELEASE_NAME := Samsung Galaxy Ace Style
 
-TARGET_SCREEN_WIDTH := 480
-TARGET_SCREEN_HEIGHT := 800
-
 $(call inherit-product, device/samsung/heatqlte/device.mk)
 
 ## Device identifier. This must come after all inclusions

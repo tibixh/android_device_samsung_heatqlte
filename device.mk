@@ -47,6 +47,10 @@ PRODUCT_COPY_FILES += \
 #     $(LOCAL_PATH)/rootdir/etc/init.qcom.efs.sync.sh:root/etc/init.qcom.efs.sync.sh \
 #     $(LOCAL_PATH)/rootdir/etc/init.qcom.modem_links.sh:root/etc/init.qcom.modem_links.sh 
 
+# Resolution
+TARGET_SCREEN_WIDTH := 480
+TARGET_SCREEN_HEIGHT := 800
+
 # Insecure adb
 ADDITIONAL_DEFAULT_PROPERTIES += \
     ro.debuggable=1 \
