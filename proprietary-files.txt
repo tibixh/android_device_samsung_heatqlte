@@ -1,6 +1,65 @@
+# Time
 bin/time_daemon
 lib/libcommon_time_client.so
 vendor/lib/libtime_genoff.so
 vendor/lib/libTimeService.so
+vendor/lib/libqmi_cci.so
+vendor/lib/libqmi_encdec.so
+vendor/lib/libqmi_client_qmux.so
+vendor/lib/libdiag.so
+vendor/lib/libdsutils.so
+vendor/lib/libmdmdetect.so
+vendor/lib/libqmiservices.so
+vendor/lib/libidl.so
+vendor/lib/libqmi_common_so.so
 
-this_is_not_an_error
+# libNimsWrap
+vendor/lib/libNimsWrap.so
+vendor/lib/libcneconn.so
+lib/libcnefeatureconfig.so
+
+# libdashplayer
+lib/libdashplayer.so
+vendor/lib/libmmipstreamaal.so
+vendor/lib/libmmosal.so
+vendor/lib/libmmiipstreammmihttp.so
+vendor/lib/libmmipstreamutils.so
+vendor/lib/libmmparser.so
+vendor/lib/libDivxDrm.so
+vendor/lib/libmmipstreamsourcehttp.so
+lib/libtinyxml.so
+vendor/lib/libmmQTA.so
+vendor/lib/libmmhttpstack.so
+vendor/lib/libmmipstreamnetwork.so
+vendor/lib/libmmQSM.so
+vendor/lib/libmmrtpdecoder.so
+
+# Graphics
+etc/firmware/a225_pfp.fw
+etc/firmware/a225_pm4.fw
+etc/firmware/a225p5_pm4.fw
+etc/firmware/a300_pfp.fw
+etc/firmware/a300_pm4.fw
+etc/firmware/a330_pfp.fw
+etc/firmware/a330_pm4.fw
+etc/firmware/a420_pfp.fw
+etc/firmware/a420_pm4.fw
+etc/firmware/ice40.bin
+etc/firmware/leia_pfp_470.fw
+etc/firmware/leia_pm4_470.fw
+vendor/lib/egl/eglsubAndroid.so
+vendor/lib/egl/libEGL_adreno.so
+vendor/lib/egl/libGLESv1_CM_adreno.so
+vendor/lib/egl/libGLESv2_adreno.so
+vendor/lib/egl/libq3dtools_adreno.so
+vendor/lib/libC2D2.so
+vendor/lib/libCB.so
+vendor/lib/libOpenCL.so
+vendor/lib/libadreno_utils.so
+vendor/lib/libc2d30-a3xx.so
+vendor/lib/libc2d30-a4xx.so
+vendor/lib/libgsl.so
+vendor/lib/libllvm-qcom.so
+vendor/lib/libsc-a2xx.so
+vendor/lib/libsc-a3xx.so
+vendor/lib/libscale.so

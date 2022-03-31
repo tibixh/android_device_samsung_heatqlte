@@ -6,7 +6,7 @@ $(call inherit-product-if-exists, vendor/samsung/heatqlte/heatqlte-vendor.mk)
 # Inherit from common
 $(call inherit-product-if-exists, device/samsung/qcom-common/qcom-common.mk)
 
-#PRODUCT_PACKAGES += libtime_genoff
+PRODUCT_PACKAGES += libtime_genoff
 
 # Init
 PRODUCT_COPY_FILES += \
@@ -15,7 +15,6 @@ PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/rootdir/fstab.qcom:root/fstab.qcom \
     $(LOCAL_PATH)/rootdir/init.mdm.sh:root/init.mdm.sh \
     $(LOCAL_PATH)/rootdir/init.environ.rc:root/init.environ.rc \
-    $(LOCAL_PATH)/rootdir/init.rc:root/init.rc \
     $(LOCAL_PATH)/rootdir/init.qcom.early_boot.sh:root/init.qcom.early_boot.sh \
     $(LOCAL_PATH)/rootdir/ueventd.qcom.rc:root/ueventd.qcom.rc \
     $(LOCAL_PATH)/rootdir/init.qcom.usb.sh:root/init.qcom.usb.sh \
@@ -32,26 +31,35 @@ PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/rootdir/init.usb.rc:root/init.usb.rc \
     $(LOCAL_PATH)/rootdir/init.qcom.syspart_fixup.sh:root/init.qcom.syspart_fixup.sh
 
-# Init ETC
-PRODUCT_COPY_FILES += \
-    $(LOCAL_PATH)/rootdir/etc/init.qcom.audio.sh:root/etc/init.qcom.audio.sh \
-    $(LOCAL_PATH)/rootdir/etc/init.qcom.rootagent.sh:root/etc/init.qcom.rootagent.sh \
-    $(LOCAL_PATH)/rootdir/etc/init.ath3k.bt.sh:root/etc/init.ath3k.bt.sh \
-    $(LOCAL_PATH)/rootdir/etc/init.qcom.post_boot.sh:root/etc/init.qcom.post_boot.sh \
-    $(LOCAL_PATH)/rootdir/etc/init.crda.sh:root/etc/init.crda.sh \
-    $(LOCAL_PATH)/rootdir/etc/init.qcom.fm.sh:root/etc/init.qcom.fm.sh \
-    $(LOCAL_PATH)/rootdir/etc/init.qcom.sdio.sh:root/etc/init.qcom.sdio.sh \
-    $(LOCAL_PATH)/rootdir/etc/init.qcom.wifi.sh:root/etc/init.qcom.wifi.sh \
-    $(LOCAL_PATH)/rootdir/etc/init.qcom.coex.sh:root/etc/init.qcom.coex.sh \
-    $(LOCAL_PATH)/rootdir/etc/init.qcom.bt.sh:root/etc/init.qcom.bt.sh \
-    $(LOCAL_PATH)/rootdir/etc/init.qcom.uicc.sh:root/etc/init.qcom.uicc.sh \
-    $(LOCAL_PATH)/rootdir/etc/init.qcom.efs.sync.sh:root/etc/init.qcom.efs.sync.sh \
-    $(LOCAL_PATH)/rootdir/etc/init.qcom.modem_links.sh:root/etc/init.qcom.modem_links.sh 
+# # Init ETC
+# PRODUCT_COPY_FILES += \
+#     $(LOCAL_PATH)/rootdir/etc/init.qcom.audio.sh:root/etc/init.qcom.audio.sh \
+#     $(LOCAL_PATH)/rootdir/etc/init.qcom.rootagent.sh:root/etc/init.qcom.rootagent.sh \
+#     $(LOCAL_PATH)/rootdir/etc/init.ath3k.bt.sh:root/etc/init.ath3k.bt.sh \
+#     $(LOCAL_PATH)/rootdir/etc/init.qcom.post_boot.sh:root/etc/init.qcom.post_boot.sh \
+#     $(LOCAL_PATH)/rootdir/etc/init.crda.sh:root/etc/init.crda.sh \
+#     $(LOCAL_PATH)/rootdir/etc/init.qcom.fm.sh:root/etc/init.qcom.fm.sh \
+#     $(LOCAL_PATH)/rootdir/etc/init.qcom.sdio.sh:root/etc/init.qcom.sdio.sh \
+#     $(LOCAL_PATH)/rootdir/etc/init.qcom.wifi.sh:root/etc/init.qcom.wifi.sh \
+#     $(LOCAL_PATH)/rootdir/etc/init.qcom.coex.sh:root/etc/init.qcom.coex.sh \
+#     $(LOCAL_PATH)/rootdir/etc/init.qcom.bt.sh:root/etc/init.qcom.bt.sh \
+#     $(LOCAL_PATH)/rootdir/etc/init.qcom.uicc.sh:root/etc/init.qcom.uicc.sh \
+#     $(LOCAL_PATH)/rootdir/etc/init.qcom.efs.sync.sh:root/etc/init.qcom.efs.sync.sh \
+#     $(LOCAL_PATH)/rootdir/etc/init.qcom.modem_links.sh:root/etc/init.qcom.modem_links.sh 
 
+# Insecure adb
 ADDITIONAL_DEFAULT_PROPERTIES += \
     ro.debuggable=1 \
 	ro.adb.secure=0 \
 	persist.service.adb.enable=1
+
+# Display
+PRODUCT_PACKAGES += \
+	copybit.msm8916 \
+	gralloc.msm8916 \
+	hwcomposer.msm8916 \
+	libtinyxml \
+	memtrack.msm8916
 
 # Overlay
 DEVICE_PACKAGE_OVERLAYS += $(LOCAL_PATH)/overlay

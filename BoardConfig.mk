@@ -3,8 +3,8 @@ LOCAL_PATH := device/samsung/heatqlte
 # Inherit from common
 include device/samsung/qcom-common/BoardConfigCommon.mk
 
-# Includes
-include $(LOCAL_PATH)/board/*.mk
+# Includes from vendor
+-include vendor/samsung/heatqlte/BoardConfigVendor.mk
 
 # Asserts
 TARGET_OTA_ASSERT_DEVICE := heatqlte,heatqltexx,g357fz,sm-g357fz
@@ -14,7 +14,7 @@ TARGET_INIT_VENDOR_LIB := libinit_msm
 TARGET_PLATFORM_DEVICE_BASE := /devices/soc.0/
 
 # Kernel
-TARGET_KERNEL_SOURCE := kernel/samsung/heatqlte
+TARGET_KERNEL_SOURCE := kernel/samsung/heatqltexx
 TARGET_KERNEL_CONFIG := heatqlte_defconfig
 
 BOARD_CUSTOM_BOOTIMG_MK := $(LOCAL_PATH)/mkbootimg.mk
@@ -47,12 +47,6 @@ FORCE_32_BIT := true
 
 # Bootloader
 TARGET_BOOTLOADER_BOARD_NAME := MSM8916
-
-# Charger
-# BOARD_CHARGER_ENABLE_SUSPEND := true
-# BOARD_CHARGER_SHOW_PERCENTAGE := true
-# BOARD_CHARGING_MODE_BOOTING_LPM := /sys/class/power_supply/battery/batt_lp_charging
-# CHARGING_ENABLED_PATH := /sys/class/power_supply/battery/batt_lp_charging
 
 # Health
 BOARD_HAL_STATIC_LIBRARIES := healthd-heatqlte.qcom
@@ -98,13 +92,19 @@ TARGET_POWERHAL_VARIANT := qcom
 AUDIO_FEATURE_ENABLED_FM := true
 TARGET_QCOM_NO_FM_FIRMWARE := true
 
-# Qualcomm support
-TARGET_USES_QCOM_BSP := true
-TARGET_QCOM_DISPLAY_VARIANT := caf-new
-
-COMMON_GLOBAL_CFLAGS += -DQCOM_BSP
-
+# Display
+MAX_EGL_CACHE_KEY_SIZE := 12*1024
+MAX_EGL_CACHE_SIZE := 2048*1024
+NUM_FRAMEBUFFER_SURFACE_BUFFERS := 3
+OVERRIDE_RS_DRIVER := libRSDriver.so
+TARGET_CONTINUOUS_SPLASH_ENABLED := true
 TARGET_HAVE_NEW_GRALLOC := true
+
+TARGET_USES_QCOM_BSP := true
+COMMON_GLOBAL_CFLAGS += -DQCOM_BSP
+TARGET_QCOM_DISPLAY_VARIANT := caf-msm8916
+
+# Qualcomm support
 HAVE_SYNAPTICS_I2C_RMI4_FW_UPGRADE   := true
 USE_DEVICE_SPECIFIC_QCOM_PROPRIETARY := true
 TARGET_USES_NEW_ION_API := true
