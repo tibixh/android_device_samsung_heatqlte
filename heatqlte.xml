@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<manifest>
+    <!-- Device -->
+    <project path="device/samsung/heatqlte" name="tibixh/android_device_samsung_heatqlte" remote="github" revision="cm-11.0"/>
+    <project path="kernel/samsung/heatqltexx" name="TALUAtGitHub/android_kernel_samsung_heatqltexx" remote="github" revision="master"/>
+    <project path="vendor/samsung/heatqlte" name="tibixh/android_vendor_samsung_heatqlte" remote="github" revision="master"/>
+
+    <!-- Display -->
+    <project path="hardware/qcom/display-caf-msm8916" name="Panyoujies/android_hardware_qcom_display-caf_msm8916" remote="github" revision="master"/>
+
+    <!-- Common -->
+    <project path="hardware/samsung" name="LineageOS/android_hardware_samsung" remote="github" revision="cm-11.0"/>
+    <project path="device/samsung/qcom-common" name="LineageOS/android_device_samsung_qcom-common" remote="github" revision="cm-11.0"/>
+    <project path="device/qcom/common" name="LineageOS/android_device_qcom_common" remote="github" revision="cm-11.0"/>
+</manifest>
