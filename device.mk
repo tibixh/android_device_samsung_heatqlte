@@ -6,8 +6,6 @@ $(call inherit-product-if-exists, vendor/samsung/heatqlte/heatqlte-vendor.mk)
 # Inherit from common
 $(call inherit-product-if-exists, device/samsung/qcom-common/qcom-common.mk)
 
-PRODUCT_PACKAGES += libtime_genoff
-
 # Init
 PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/rootdir/init.carrier.rc:root/init.carrier.rc \
@@ -53,9 +51,20 @@ TARGET_SCREEN_HEIGHT := 800
 
 # Insecure adb
 ADDITIONAL_DEFAULT_PROPERTIES += \
+	ro.secure=0 \
     ro.debuggable=1 \
 	ro.adb.secure=0 \
 	persist.service.adb.enable=1
+
+# Doze
+PRODUCT_PACKAGES += \
+    SamsungDoze
+
+# Live Wallpapers
+PRODUCT_PACKAGES += \
+    LiveWallpapers \
+    LiveWallpapersPicker \
+    VisualizationWallpapers
 
 # Display
 PRODUCT_PACKAGES += \
@@ -64,6 +73,66 @@ PRODUCT_PACKAGES += \
 	hwcomposer.msm8916 \
 	libtinyxml \
 	memtrack.msm8916
+
+# Keylayout & touch
+PRODUCT_COPY_FILES += \
+	$(LOCAL_PATH)/keylayout/sec_touchkey.kl:system/usr/keylayout/sec_touchkey.kl \
+	$(LOCAL_PATH)/keylayout/sec_touchscreen.kl:system/usr/keylayout/sec_touchscreen.kl \
+	$(LOCAL_PATH)/keylayout/gpio-keys.kl:system/usr/keylayout/gpio-keys.kl
+
+
+
+# Connectivity Engine support
+PRODUCT_PACKAGES += \
+	libcnefeatureconfig
+
+# JARS
+PRODUCT_PACKAGES += \
+	com.google.widevine.software.drm
+
+# Keystore
+PRODUCT_PACKAGES += \
+	keystore.msm8916
+
+# Lights
+PRODUCT_PACKAGES += \
+	lights.msm8916
+
+# Power HAL
+PRODUCT_PACKAGES += \
+	power.qcom
+
+# USB
+PRODUCT_PACKAGES += \
+	com.android.future.usb.accessory
+
+PRODUCT_COPY_FILES += \
+	frameworks/native/data/etc/android.hardware.usb.accessory.xml:system/etc/permissions/android.hardware.usb.accessory.xml \
+	frameworks/native/data/etc/android.hardware.usb.host.xml:system/etc/permissions/android.hardware.usb.host.xml
+
+# Bluetooth
+PRODUCT_PACKAGES += \
+	javax.btobex \
+	libbt-vendor
+
+PRODUCT_COPY_FILES += \
+	frameworks/native/data/etc/android.hardware.bluetooth.xml:system/etc/permissions/android.hardware.bluetooth.xml \
+	frameworks/native/data/etc/android.hardware.bluetooth_le.xml:system/etc/permissions/android.hardware.bluetooth_le.xml
+
+# we have enough storage space to hold precise GC data
+PRODUCT_TAGS += dalvik.gc.type-precise
+
+# WLAN
+# PRODUCT_PACKAGES += \
+# 	hostapd \
+# 	iwconfig \
+# 	hostapd_cli \
+# 	libQWiFiSoftApCfg \
+# 	libqsap_sdk \
+# 	libwpa_client \
+# 	libwcnss_qmi \
+# 	wcnss_service \
+# 	wpa_supplicant
 
 # Overlay
 DEVICE_PACKAGE_OVERLAYS += $(LOCAL_PATH)/overlay
