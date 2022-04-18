@@ -5,6 +5,7 @@ dumpdir = '/home/tibix/android/system_dumps/heatqlte/dump'
 propdir = '../../../vendor/samsung/heatqlte/proprietary'
 
 files = open('proprietary-files.txt').read().split('\n')
+missing = []
 
 for file in files:
     if not(file.startswith('#') or file == ""):
@@ -17,5 +18,10 @@ for file in files:
             shutil.copyfile(f"{dumpdir}/{file}",f"{propdir}/{file}")
         else:
             print(f"No such file: {file}")
+            missing.append(file)
+
+for file in missing:
+    print(f"Missing: {file}")
+
 print("extract-files.py done \nhere comes makefiles")
 os.system('python3 setup-makefiles.py')
