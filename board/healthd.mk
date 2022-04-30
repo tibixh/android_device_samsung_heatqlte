@@ -1,0 +1,8 @@
+# Charger
+BOARD_CHARGER_ENABLE_SUSPEND    := true
+BOARD_CHARGER_SHOW_PERCENTAGE   := true
+BOARD_CHARGER_DISABLE_INIT_BLANK := true
+
+# Healthd
+BOARD_HAL_STATIC_LIBRARIES := healthd-heatqlte.qcom
+

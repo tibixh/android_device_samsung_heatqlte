@@ -1,40 +1,94 @@
-# Time
-bin/time_daemon
-lib/libcommon_time_client.so
-vendor/lib/libtime_genoff.so
-vendor/lib/libTimeService.so
-vendor/lib/libqmi_cci.so
-vendor/lib/libqmi_encdec.so
-vendor/lib/libqmi_client_qmux.so
-vendor/lib/libdiag.so
-vendor/lib/libdsutils.so
+# ADSP
+bin/adsprpcd
+vendor/lib/libadsprpc.so
+vendor/lib/libfastcvopt.so
+
+# Audio
+vendor/bin/audioflacapp
+vendor/lib/libacdbloader.so
+vendor/lib/libacdbmapper.so
+vendor/lib/libacdbrtac.so
+vendor/lib/libadiertac.so
+vendor/lib/libaudcal.so
+vendor/lib/libqct_resampler.so
+vendor/lib/libaudioalsa.so
 vendor/lib/libmdmdetect.so
-vendor/lib/libqmiservices.so
-vendor/lib/libidl.so
-vendor/lib/libqmi_common_so.so
+vendor/lib/soundfx/libqcbassboost.so
+vendor/lib/soundfx/libqcreverb.so
+vendor/lib/soundfx/libqcvirt.so
 
-# libNimsWrap
-vendor/lib/libNimsWrap.so
-vendor/lib/libcneconn.so
-lib/libcnefeatureconfig.so
+# Camera firmware
+etc/firmware/cpp_firmware_v1_1_1.fw
+etc/firmware/cpp_firmware_v1_1_6.fw
+etc/firmware/cpp_firmware_v1_2_0.fw
+etc/firmware/cpp_firmware_v1_4_0.fw
 
-# libdashplayer
-lib/libdashplayer.so
-vendor/lib/libmmipstreamaal.so
-vendor/lib/libmmosal.so
-vendor/lib/libmmiipstreammmihttp.so
-vendor/lib/libmmipstreamutils.so
-vendor/lib/libmmparser.so
-vendor/lib/libDivxDrm.so
-vendor/lib/libmmipstreamsourcehttp.so
-lib/libtinyxml.so
-vendor/lib/libmmQTA.so
-vendor/lib/libmmhttpstack.so
-vendor/lib/libmmipstreamnetwork.so
-vendor/lib/libmmQSM.so
-vendor/lib/libmmrtpdecoder.so
+# Bluetooth
+bin/btnvtool
+bin/hci_qcomm_init
+vendor/lib/libbtnv.so
+
+# Sensors
+lib/hw/sensors.msm8916.so
+
+# NFC
+#lib/hw/nfc_nci.msm8916.so
+#vendor/firmware/libpn548ad_fw.so
+#etc/firmware/nfc_test.bin
+
+# FM radio
+bin/fmconfig
+bin/fm_qsoc_patches
+
+# DRM
+bin/qseecomd
+lib/libdrmdecrypt.so
+vendor/lib/mediadrm/libwvdrmengine.so
+vendor/lib/libdrmfs.so
+vendor/lib/libdrmtime.so
+vendor/lib/libprdrmdecrypt.so
+vendor/lib/libQSEEComAPI.so
+vendor/lib/librpmb.so
+vendor/lib/libssd.so
+vendor/lib/libtzplayready.so
+vendor/lib/libwvdrm_L3.so
+vendor/lib/libWVStreamControlAPI_L3.so
+vendor/media/LMspeed_508.emd
+vendor/media/PFFprec_600.emd
+
+# DPM
+bin/dpmd
+vendor/lib/libdpmctmgr.so
+vendor/lib/libdpmfdmgr.so
+vendor/lib/libdpmframework.so
+
+# GPS
+bin/irsc_util
+lib/libloc_api_v02.so
+vendor/lib/hw/flp.default.so
+vendor/lib/libgeofence.so
+vendor/lib/libizat_core.so
+vendor/lib/liblbs_core.so
 
 # Graphics
+vendor/lib/egl/eglsubAndroid.so
+vendor/lib/egl/libEGL_adreno.so
+vendor/lib/egl/libGLESv1_CM_adreno.so
+vendor/lib/egl/libGLESv2_adreno.so
+vendor/lib/egl/libq3dtools_adreno.so
+vendor/lib/libadreno_utils.so
+vendor/lib/libc2d30-a3xx.so
+vendor/lib/libc2d30-a4xx.so
+vendor/lib/libC2D2.so
+vendor/lib/libCB.so
+vendor/lib/libgsl.so
+vendor/lib/libllvm-qcom.so
+vendor/lib/libOpenCL.so
+vendor/lib/libsc-a2xx.so
+vendor/lib/libsc-a3xx.so
+vendor/lib/libscale.so
+
+# Graphics firmware
 etc/firmware/a225_pfp.fw
 etc/firmware/a225_pm4.fw
 etc/firmware/a225p5_pm4.fw
@@ -46,70 +100,129 @@ etc/firmware/a420_pfp.fw
 etc/firmware/a420_pm4.fw
 etc/firmware/leia_pfp_470.fw
 etc/firmware/leia_pm4_470.fw
-vendor/lib/egl/eglsubAndroid.so
-vendor/lib/egl/libEGL_adreno.so
-vendor/lib/egl/libGLESv1_CM_adreno.so
-vendor/lib/egl/libGLESv2_adreno.so
-vendor/lib/egl/libq3dtools_adreno.so
-vendor/lib/libC2D2.so
-vendor/lib/libCB.so
-vendor/lib/libOpenCL.so
-vendor/lib/libadreno_utils.so
-vendor/lib/libc2d30-a3xx.so
-vendor/lib/libc2d30-a4xx.so
-vendor/lib/libgsl.so
-vendor/lib/libllvm-qcom.so
-vendor/lib/libsc-a2xx.so
-vendor/lib/libsc-a3xx.so
-vendor/lib/libscale.so
 
-# Bluetooth
-bin/btnvtool
-bin/hci_qcomm_init
-vendor/lib/libbtnv.so
+# IMS - currently unused but have dependencies to qmi
+bin/imsdatadaemon
+bin/imsqmidaemon
+bin/ims_rtp_daemon
+vendor/lib/lib-dplmedia.so
+vendor/lib/lib-imscamera.so
+vendor/lib/lib-imsdpl.so
+vendor/lib/lib-imsqimf.so
+vendor/lib/lib-imsrcs.so
+vendor/lib/lib-imss.so
+vendor/lib/lib-imsSDP.so
+vendor/lib/lib-imsvt.so
+vendor/lib/lib-imsxml.so
+vendor/lib/lib-rcsimssjni.so
+vendor/lib/lib-rcsjni.so
+vendor/lib/lib-rtpcommon.so
+vendor/lib/lib-rtpcore.so
+vendor/lib/lib-rtpdaemoninterface.so
+vendor/lib/lib-rtpsl.so
+vendor/lib/libvoice-svc.so
 
-# Audio
-vendor/lib/libacdb-fts.so
-vendor/lib/libacdbloader.so
-vendor/lib/libacdbmapper.so
-vendor/lib/libacdbrtac.so
-vendor/lib/libadiertac.so
-vendor/lib/libaudcal.so
-vendor/lib/libaudioalsa.so
-vendor/lib/liblistensoundmodel2.so
-vendor/lib/libqct_resampler.so
-vendor/lib/soundfx/libqcbassboost.so
-vendor/lib/soundfx/libqcreverb.so
-vendor/lib/soundfx/libqcvirt.so
+# LD_PRELOAD
+vendor/lib/libNimsWrap.so
+
+# Media
+lib/libOmxVdecHevc.so
+vendor/lib/libDivxDrm.so
+vendor/lib/libExtendedExtractor.so
+vendor/lib/libFlacSwDec.so
+vendor/lib/libHevcSwDecoder.so
+vendor/lib/libI420colorconvert.so
+vendor/lib/libmmosal.so
+vendor/lib/libmmparser.so
+vendor/lib/libmm-color-convertor.so
+vendor/lib/libOmxAacDec.so
+vendor/lib/libOmxEvrcDec.so
+vendor/lib/libOmxQcelp13Dec.so
+vendor/lib/libSHIMDivxDrm.so
+
+# Perf
+bin/mpdecision
+vendor/lib/libqc-opt.so
+
+# Lights
+vendor/lib/hw/lights.msm8916.so
+
+# Postprocessing
+lib/libtinyxml2.so
+vendor/lib/libdisp-aba.so
+vendor/lib/libmm-abl.so
+vendor/lib/libmm-abl-oem.so
+
+# Qualcomm framework
+bin/irsc_util
+vendor/lib/libdiag.so
+vendor/lib/libdsnetutils.so
+vendor/lib/libdsutils.so
+vendor/lib/libidl.so
+vendor/lib/libqcci_legacy.so
+vendor/lib/libqmi.so
+vendor/lib/libqmi_cci.so
+vendor/lib/libqmi_client_qmux.so
+vendor/lib/libqmi_common_so.so
+vendor/lib/libqmi_csi.so
+vendor/lib/libqmi_csvt_srvc.so
+vendor/lib/libqmi_encdec.so
+vendor/lib/libqmiservices.so
 
 # Radio
-bin/diag_mdlog
-bin/diag_uart_log
-bin/netmgrd
-bin/ftm_ptt
-bin/ptt_socket_app
+bin/rild
+bin/qmuxd
+bin/qmiproxy
+bin/radish
+bin/rfs_access
+bin/rmt_storage
+vendor/lib/libcneapiclient.so
+vendor/lib/libconfigdb.so
+vendor/lib/libmdmdetect.so
+vendor/lib/libril-qcril-hook-oem.so
+vendor/lib/libxml.so
+lib/libril.so
+lib/libsec-ril.so
+lib/libsecril-client.so
+lib/libcordon.so
+lib/libfactoryutil.so
+lib/libsecnativefeature.so
+lib/libomission_avoidance.so
+lib/librmnetctl.so
+etc/plmn_se13.bin
+
+# Radio huawei
+bin/ATFWD-daemon
+bin/bridgemgrd
+bin/ds_fmc_appd
 bin/port-bridge
 bin/qmuxd
 bin/radish
 bin/rfs_access
-bin/rmt_storage
-bin/wlandutservice
-etc/plmn_delta.bin
-etc/plmn_se13.bin
-etc/srm.bin
-lib/libatparser.so
-lib/libcordon.so
-lib/libfactoryutil.so
-lib/libomission_avoidance.so
+bin/rmnetcli
+bin/qmiproxy
+lib/libril.so
+lib/librmnetctl.so
+vendor/lib/libcneapiclient.so
+vendor/lib/libCommandSvc.so
 vendor/lib/libconfigdb.so
-vendor/lib/libmdmdetect.so
-vendor/lib/libnetmgr.so
-vendor/lib/libperipheral_client.so
-vendor/lib/libsubsystem_control.so
-vendor/lib/libSubSystemShutdown.so
+vendor/lib/libril-qcril-hook-oem.so
 vendor/lib/libxml.so
 
-# RIL
-lib/libaudio-ril.so
-lib/libsecril-client.so
-vendor/lib/libril-qcril-hook-oem.so
+# Thermal
+bin/thermal-engine
+vendor/lib/libthermalclient.so
+vendor/lib/libthermalioctl.so
+
+# Time services
+app/TimeService.apk
+bin/time_daemon
+vendor/lib/libtime_genoff.so
+vendor/lib/libTimeService.so
+lib/libcommon_time_client.so
+
+# Firmware
+etc/firmware/Signedrompatch_v30.bin
+etc/firmware/Signedrompatch_v24.bin
+etc/firmware/Signedrompatch_v21.bin
+etc/firmware/Signedrompatch_v20.bin
