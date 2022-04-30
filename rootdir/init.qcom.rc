@@ -45,6 +45,7 @@ on init
     mkdir /persist 0771 system system
     # See storage config details at http://source.android.com/tech/storage/
     mkdir /mnt/shell/emulated 0700 shell shell
+    mkdir /storage 0550 system sdcard_r
     mkdir /storage/emulated 0555 root root
 
     export EXTERNAL_STORAGE /storage/emulated/legacy
