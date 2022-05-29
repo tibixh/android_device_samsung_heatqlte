@@ -18,22 +18,6 @@ vendor/lib/libNimsWrap.so
 vendor/lib/libcneconn.so
 lib/libcnefeatureconfig.so
 
-# libdashplayer
-lib/libdashplayer.so
-vendor/lib/libmmipstreamaal.so
-vendor/lib/libmmosal.so
-vendor/lib/libmmiipstreammmihttp.so
-vendor/lib/libmmipstreamutils.so
-vendor/lib/libmmparser.so
-vendor/lib/libDivxDrm.so
-vendor/lib/libmmipstreamsourcehttp.so
-lib/libtinyxml.so
-vendor/lib/libmmQTA.so
-vendor/lib/libmmhttpstack.so
-vendor/lib/libmmipstreamnetwork.so
-vendor/lib/libmmQSM.so
-vendor/lib/libmmrtpdecoder.so
-
 # Graphics
 etc/firmware/a225_pfp.fw
 etc/firmware/a225_pm4.fw
@@ -63,53 +47,9 @@ vendor/lib/libsc-a2xx.so
 vendor/lib/libsc-a3xx.so
 vendor/lib/libscale.so
 
-# Bluetooth
-bin/btnvtool
-bin/hci_qcomm_init
-vendor/lib/libbtnv.so
+# lib/hw/copybit.msm8916.so
+# lib/libtinyxml.so
+# lib/hw/gralloc.msm8916.so
+# lib/hw/hwcomposer.msm8916.so
+# lib/hw/memtrack.msm8916.so
 
-# Audio
-vendor/lib/libacdb-fts.so
-vendor/lib/libacdbloader.so
-vendor/lib/libacdbmapper.so
-vendor/lib/libacdbrtac.so
-vendor/lib/libadiertac.so
-vendor/lib/libaudcal.so
-vendor/lib/libaudioalsa.so
-vendor/lib/liblistensoundmodel2.so
-vendor/lib/libqct_resampler.so
-vendor/lib/soundfx/libqcbassboost.so
-vendor/lib/soundfx/libqcreverb.so
-vendor/lib/soundfx/libqcvirt.so
-
-# Radio
-bin/diag_mdlog
-bin/diag_uart_log
-bin/netmgrd
-bin/ftm_ptt
-bin/ptt_socket_app
-bin/port-bridge
-bin/qmuxd
-bin/radish
-bin/rfs_access
-bin/rmt_storage
-bin/wlandutservice
-etc/plmn_delta.bin
-etc/plmn_se13.bin
-etc/srm.bin
-lib/libatparser.so
-lib/libcordon.so
-lib/libfactoryutil.so
-lib/libomission_avoidance.so
-vendor/lib/libconfigdb.so
-vendor/lib/libmdmdetect.so
-vendor/lib/libnetmgr.so
-vendor/lib/libperipheral_client.so
-vendor/lib/libsubsystem_control.so
-vendor/lib/libSubSystemShutdown.so
-vendor/lib/libxml.so
-
-# RIL
-lib/libaudio-ril.so
-lib/libsecril-client.so
-vendor/lib/libril-qcril-hook-oem.so

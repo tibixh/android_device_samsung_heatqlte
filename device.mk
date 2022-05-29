@@ -56,16 +56,6 @@ ADDITIONAL_DEFAULT_PROPERTIES += \
 	ro.adb.secure=0 \
 	persist.service.adb.enable=1
 
-# Doze
-PRODUCT_PACKAGES += \
-    SamsungDoze
-
-# Live Wallpapers
-PRODUCT_PACKAGES += \
-    LiveWallpapers \
-    LiveWallpapersPicker \
-    VisualizationWallpapers
-
 # Display
 PRODUCT_PACKAGES += \
 	copybit.msm8916 \
@@ -80,24 +70,6 @@ PRODUCT_COPY_FILES += \
 	$(LOCAL_PATH)/keylayout/sec_touchscreen.kl:system/usr/keylayout/sec_touchscreen.kl \
 	$(LOCAL_PATH)/keylayout/gpio-keys.kl:system/usr/keylayout/gpio-keys.kl
 
-
-
-# Connectivity Engine support
-PRODUCT_PACKAGES += \
-	libcnefeatureconfig
-
-# JARS
-PRODUCT_PACKAGES += \
-	com.google.widevine.software.drm
-
-# Keystore
-PRODUCT_PACKAGES += \
-	keystore.msm8916
-
-# Lights
-PRODUCT_PACKAGES += \
-	lights.msm8916
-
 # Power HAL
 PRODUCT_PACKAGES += \
 	power.qcom
@@ -109,15 +81,6 @@ PRODUCT_PACKAGES += \
 PRODUCT_COPY_FILES += \
 	frameworks/native/data/etc/android.hardware.usb.accessory.xml:system/etc/permissions/android.hardware.usb.accessory.xml \
 	frameworks/native/data/etc/android.hardware.usb.host.xml:system/etc/permissions/android.hardware.usb.host.xml
-
-# Bluetooth
-PRODUCT_PACKAGES += \
-	javax.btobex \
-	libbt-vendor
-
-PRODUCT_COPY_FILES += \
-	frameworks/native/data/etc/android.hardware.bluetooth.xml:system/etc/permissions/android.hardware.bluetooth.xml \
-	frameworks/native/data/etc/android.hardware.bluetooth_le.xml:system/etc/permissions/android.hardware.bluetooth_le.xml
 
 # we have enough storage space to hold precise GC data
 PRODUCT_TAGS += dalvik.gc.type-precise
