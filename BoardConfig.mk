@@ -6,6 +6,9 @@ include device/samsung/qcom-common/BoardConfigCommon.mk
 # Includes from vendor
 -include vendor/samsung/heatqlte/BoardConfigVendor.mk
 
+# cm12 patches
+include device/samsung/heatqlte/patches/patches.mk
+
 # Asserts
 TARGET_OTA_ASSERT_DEVICE := heatqlte,heatqltexx,g357fz,sm-g357fz
 
@@ -16,8 +19,6 @@ TARGET_PLATFORM_DEVICE_BASE := /devices/soc.0/
 # Kernel
 TARGET_KERNEL_SOURCE := kernel/samsung/heatqltexx
 TARGET_KERNEL_CONFIG := heatqlte_defconfig
-
-KERNEL_TOOLCHAIN := $(ANDROID_BUILD_TOP)/../cm11.0/prebuilts/gcc/linux-x86/arm/arm-eabi-4.7/bin
 
 BOARD_CUSTOM_BOOTIMG_MK := $(LOCAL_PATH)/mkbootimg.mk
 BOARD_DTBTOOL_ARGS := -2
@@ -113,7 +114,6 @@ TARGET_HAVE_NEW_GRALLOC := true
 BOARD_USES_QC_TIME_SERVICES := true
 HAVE_SYNAPTICS_I2C_RMI4_FW_UPGRADE   := true
 USE_DEVICE_SPECIFIC_QCOM_PROPRIETARY := true
-TARGET_USES_NEW_ION_API := true
 
 # Wifi
 WLAN_CHIPSET := pronto
@@ -137,6 +137,21 @@ WLAN_MODULES:
 
 #TARGET_KERNEL_MODULES += WLAN_MODULES
 
+# TWRP
+RECOVERY_VARIANT := twrp
+TW_BRIGHTNESS_PATH := "/sys/class/leds/lcd-backlight/brightness"
+TW_MAX_BRIGHTNESS := 255
+TW_HAS_DOWNLOAD_MODE := true
+TW_HAS_MTP := true
+TW_INCLUDE_CRYPTO := true
+TW_INPUT_BLACKLIST := "accelerometer"
+TW_INTERNAL_STORAGE_PATH := "/data/media/0"
+TW_MTP_DEVICE := /dev/mtp_usb
+TW_NO_REBOOT_BOOTLOADER := true
+TW_NO_SCREEN_TIMEOUT := true
+TW_NO_USB_STORAGE := true
+TW_TARGET_USES_QCOM_BSP := true
+TW_THEME := portrait_hdpi
 
 # Recovery
 BOARD_HAS_NO_SELECT_BUTTON := true
@@ -152,4 +167,12 @@ TARGET_RECOVERY_PIXEL_FORMAT := "RGB_565"
 TARGET_RECOVERY_DENSITY := hdpi
 TARGET_RECOVERY_QCOM_RTC_FIX := true
 
-TARGET_RECOVERY_FSTAB := $(LOCAL_PATH)/recovery/recovery.fstab
+ifeq ($(RECOVERY_VARIANT),twrp)
+	TARGET_RECOVERY_FSTAB := $(LOCAL_PATH)/recovery/twrp.fstab
+else
+	TARGET_RECOVERY_FSTAB := $(LOCAL_PATH)/recovery/recovery.fstab
+endif
+
+
+
+
