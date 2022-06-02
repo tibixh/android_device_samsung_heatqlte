@@ -1,9 +1,0 @@
-# CABL
-ro.qualcomm.cabl=2
-
-# RAM
-ro.config.low_ram=false
-ro.config.zram=false
-
-# Screen
-ro.sf.lcd_density=216

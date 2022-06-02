@@ -1,5 +1,3 @@
-LOCAL_PATH := device/samsung/heatqlte
-
 # Inherit from vendor
 $(call inherit-product-if-exists, vendor/samsung/heatqlte/heatqlte-vendor.mk)
 
