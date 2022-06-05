@@ -138,7 +138,7 @@ WLAN_MODULES:
 #TARGET_KERNEL_MODULES += WLAN_MODULES
 
 # TWRP
-RECOVERY_VARIANT := twrp
+#RECOVERY_VARIANT := twrp
 TW_BRIGHTNESS_PATH := "/sys/class/leds/lcd-backlight/brightness"
 TW_MAX_BRIGHTNESS := 255
 TW_HAS_DOWNLOAD_MODE := true
@@ -146,7 +146,7 @@ TW_HAS_MTP := true
 TW_INCLUDE_CRYPTO := true
 TW_INPUT_BLACKLIST := "accelerometer"
 TW_INTERNAL_STORAGE_PATH := "/data/media/0"
-TW_MTP_DEVICE := /dev/mtp_usb
+TW_MTP_DEVICE := /dev/usb_mtp_gadget
 TW_NO_REBOOT_BOOTLOADER := true
 TW_NO_SCREEN_TIMEOUT := true
 TW_NO_USB_STORAGE := true
