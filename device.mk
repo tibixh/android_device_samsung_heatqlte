@@ -5,27 +5,41 @@ $(call inherit-product-if-exists, vendor/samsung/heatqlte/heatqlte-vendor.mk)
 $(call inherit-product-if-exists, device/samsung/qcom-common/qcom-common.mk)
 
 # Init
+# PRODUCT_COPY_FILES += \
+#     $(LOCAL_PATH)/rootdir/init.carrier.rc:root/init.carrier.rc \
+#     $(LOCAL_PATH)/rootdir/init.qcom.class_core.sh:root/init.qcom.class_core.sh \
+#     $(LOCAL_PATH)/rootdir/fstab.qcom:root/fstab.qcom \
+#     $(LOCAL_PATH)/rootdir/init.mdm.sh:root/init.mdm.sh \
+#     $(LOCAL_PATH)/rootdir/init.environ.rc:root/init.environ.rc \
+#     $(LOCAL_PATH)/rootdir/init.qcom.early_boot.sh:root/init.qcom.early_boot.sh \
+#     $(LOCAL_PATH)/rootdir/ueventd.qcom.rc:root/ueventd.qcom.rc \
+#     $(LOCAL_PATH)/rootdir/init.qcom.usb.sh:root/init.qcom.usb.sh \
+#     $(LOCAL_PATH)/rootdir/init.class_main.sh:root/init.class_main.sh \
+#     $(LOCAL_PATH)/rootdir/init.qcom.factory.sh:root/init.qcom.factory.sh \
+#     $(LOCAL_PATH)/rootdir/init.target.rc:root/init.target.rc \
+#     $(LOCAL_PATH)/rootdir/init.container.rc:root/init.container.rc \
+#     $(LOCAL_PATH)/rootdir/init.qcom.usb.rc:root/init.qcom.usb.rc \
+#     $(LOCAL_PATH)/rootdir/init.qcom.rc:root/init.qcom.rc \
+#     $(LOCAL_PATH)/rootdir/ueventd.rc:root/ueventd.rc \
+#     $(LOCAL_PATH)/rootdir/init.qcom.ssr.sh:root/init.qcom.ssr.sh \
+#     $(LOCAL_PATH)/rootdir/init.trace.rc:root/init.trace.rc \
+#     $(LOCAL_PATH)/rootdir/init.qcom.sh:root/init.qcom.sh \
+#     $(LOCAL_PATH)/rootdir/init.usb.rc:root/init.usb.rc \
+#     $(LOCAL_PATH)/rootdir/init.qcom.syspart_fixup.sh:root/init.qcom.syspart_fixup.sh
+
 PRODUCT_COPY_FILES += \
-    $(LOCAL_PATH)/rootdir/init.carrier.rc:root/init.carrier.rc \
-    $(LOCAL_PATH)/rootdir/init.qcom.class_core.sh:root/init.qcom.class_core.sh \
-    $(LOCAL_PATH)/rootdir/fstab.qcom:root/fstab.qcom \
-    $(LOCAL_PATH)/rootdir/init.mdm.sh:root/init.mdm.sh \
-    $(LOCAL_PATH)/rootdir/init.environ.rc:root/init.environ.rc \
-    $(LOCAL_PATH)/rootdir/init.qcom.early_boot.sh:root/init.qcom.early_boot.sh \
-    $(LOCAL_PATH)/rootdir/ueventd.qcom.rc:root/ueventd.qcom.rc \
-    $(LOCAL_PATH)/rootdir/init.qcom.usb.sh:root/init.qcom.usb.sh \
-    $(LOCAL_PATH)/rootdir/init.class_main.sh:root/init.class_main.sh \
-    $(LOCAL_PATH)/rootdir/init.qcom.factory.sh:root/init.qcom.factory.sh \
-    $(LOCAL_PATH)/rootdir/init.target.rc:root/init.target.rc \
-    $(LOCAL_PATH)/rootdir/init.container.rc:root/init.container.rc \
     $(LOCAL_PATH)/rootdir/init.qcom.usb.rc:root/init.qcom.usb.rc \
+    $(LOCAL_PATH)/rootdir/init.qcom.early_boot.sh:root/init.qcom.early_boot.sh \
+    $(LOCAL_PATH)/rootdir/init.class_main.sh:root/init.class_main.sh \
+    $(LOCAL_PATH)/rootdir/init.qcom.post_boot.sh:root/init.qcom.post_boot.sh \
+    $(LOCAL_PATH)/rootdir/init.recovery.qcom.rc:root/init.recovery.qcom.rc \
+    $(LOCAL_PATH)/rootdir/fstab.qcom:root/fstab.qcom \
+    $(LOCAL_PATH)/rootdir/init.qcom.usb.sh:root/init.qcom.usb.sh \
+    $(LOCAL_PATH)/rootdir/ueventd.qcom.rc:root/ueventd.qcom.rc \
     $(LOCAL_PATH)/rootdir/init.qcom.rc:root/init.qcom.rc \
-    $(LOCAL_PATH)/rootdir/ueventd.rc:root/ueventd.rc \
-    $(LOCAL_PATH)/rootdir/init.qcom.ssr.sh:root/init.qcom.ssr.sh \
-    $(LOCAL_PATH)/rootdir/init.trace.rc:root/init.trace.rc \
-    $(LOCAL_PATH)/rootdir/init.qcom.sh:root/init.qcom.sh \
-    $(LOCAL_PATH)/rootdir/init.usb.rc:root/init.usb.rc \
-    $(LOCAL_PATH)/rootdir/init.qcom.syspart_fixup.sh:root/init.qcom.syspart_fixup.sh
+	$(LOCAL_PATH)/rootdir/init.carrier.rc:root/init.carrier.rc \
+	$(LOCAL_PATH)/rootdir/init.target.rc:root/init.target.rc \
+    $(LOCAL_PATH)/rootdir/init.qcom.sh:root/init.qcom.sh
 
 # # Init ETC
 # PRODUCT_COPY_FILES += \
@@ -50,7 +64,7 @@ TARGET_SCREEN_HEIGHT := 800
 # Insecure adb
 ADDITIONAL_DEFAULT_PROPERTIES += \
 	ro.secure=0 \
-    ro.debuggable=1 \
+	ro.debuggable=1 \
 	ro.adb.secure=0 \
 	persist.service.adb.enable=1
 
