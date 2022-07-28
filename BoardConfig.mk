@@ -48,10 +48,10 @@ FORCE_32_BIT := true
 # Bootloader
 TARGET_BOOTLOADER_BOARD_NAME := MSM8916
 
-# Health
-BOARD_HAL_STATIC_LIBRARIES := healthd-heatqlte.qcom
+# Healthd
+BOARD_HAL_STATIC_LIBRARIES := libhealthd-heatqlte.qcom
 
-# Partition sizes
+# Partitions
 BOARD_BOOTIMAGE_PARTITION_SIZE := 13631488
 BOARD_RECOVERYIMAGE_PARTITION_SIZE := 15728640
 BOARD_SYSTEMIMAGE_PARTITION_SIZE := 1572864000
@@ -105,11 +105,9 @@ MAX_EGL_CACHE_SIZE := 2048*1024
 NUM_FRAMEBUFFER_SURFACE_BUFFERS := 3
 OVERRIDE_RS_DRIVER := libRSDriver_adreno.so
 TARGET_CONTINUOUS_SPLASH_ENABLED := true
-TARGET_HAVE_NEW_GRALLOC := true
 
 TARGET_USES_QCOM_BSP := true
-COMMON_GLOBAL_CFLAGS += -DQCOM_BSP
-TARGET_QCOM_DISPLAY_VARIANT := caf-msm8916
+TARGET_QCOM_DISPLAY_VARIANT := caf-new
 
 # Qualcomm support
 HAVE_SYNAPTICS_I2C_RMI4_FW_UPGRADE   := true
@@ -134,7 +132,7 @@ WPA_SUPPLICANT_VERSION := VER_0_8_X
 WLAN_MODULES:
 	mkdir -p $(KERNEL_MODULES_OUT)/pronto
 	mv $(KERNEL_MODULES_OUT)/wlan.ko $(KERNEL_MODULES_OUT)/pronto/pronto_wlan.ko
-	ln -sf /system/lib/modules/pronto/pronto_wlan.ko $(TARGET_OUT)/lib/modules/wlan.ko
+	ln -sf $(TARGET_OUT)/lib/modules/pronto/pronto_wlan.ko $(TARGET_OUT)/lib/modules/wlan.ko
 
 #TARGET_KERNEL_MODULES += WLAN_MODULES
 

@@ -4,7 +4,7 @@ LOCAL_PATH := device/samsung/heatqlte
 $(call inherit-product-if-exists, vendor/samsung/heatqlte/heatqlte-vendor.mk)
 
 # Inherit from common
-$(call inherit-product-if-exists, device/samsung/qcom-common/qcom-common.mk)
+$(call inherit-product, device/samsung/qcom-common/qcom-common.mk)
 
 # Init
 PRODUCT_COPY_FILES += \
@@ -31,19 +31,19 @@ PRODUCT_COPY_FILES += \
 
 # # Init ETC
 # PRODUCT_COPY_FILES += \
-#     $(LOCAL_PATH)/rootdir/etc/init.qcom.audio.sh:root/etc/init.qcom.audio.sh \
-#     $(LOCAL_PATH)/rootdir/etc/init.qcom.rootagent.sh:root/etc/init.qcom.rootagent.sh \
-#     $(LOCAL_PATH)/rootdir/etc/init.ath3k.bt.sh:root/etc/init.ath3k.bt.sh \
-#     $(LOCAL_PATH)/rootdir/etc/init.qcom.post_boot.sh:root/etc/init.qcom.post_boot.sh \
-#     $(LOCAL_PATH)/rootdir/etc/init.crda.sh:root/etc/init.crda.sh \
-#     $(LOCAL_PATH)/rootdir/etc/init.qcom.fm.sh:root/etc/init.qcom.fm.sh \
-#     $(LOCAL_PATH)/rootdir/etc/init.qcom.sdio.sh:root/etc/init.qcom.sdio.sh \
-#     $(LOCAL_PATH)/rootdir/etc/init.qcom.wifi.sh:root/etc/init.qcom.wifi.sh \
-#     $(LOCAL_PATH)/rootdir/etc/init.qcom.coex.sh:root/etc/init.qcom.coex.sh \
-#     $(LOCAL_PATH)/rootdir/etc/init.qcom.bt.sh:root/etc/init.qcom.bt.sh \
-#     $(LOCAL_PATH)/rootdir/etc/init.qcom.uicc.sh:root/etc/init.qcom.uicc.sh \
-#     $(LOCAL_PATH)/rootdir/etc/init.qcom.efs.sync.sh:root/etc/init.qcom.efs.sync.sh \
-#     $(LOCAL_PATH)/rootdir/etc/init.qcom.modem_links.sh:root/etc/init.qcom.modem_links.sh 
+#     $(LOCAL_PATH)/rootdir/etc/init.qcom.audio.sh:system/etc/init.qcom.audio.sh \
+#     $(LOCAL_PATH)/rootdir/etc/init.qcom.rootagent.sh:system/etc/init.qcom.rootagent.sh \
+#     $(LOCAL_PATH)/rootdir/etc/init.ath3k.bt.sh:system/etc/init.ath3k.bt.sh \
+#     $(LOCAL_PATH)/rootdir/etc/init.qcom.post_boot.sh:system/etc/init.qcom.post_boot.sh \
+#     $(LOCAL_PATH)/rootdir/etc/init.crda.sh:system/etc/init.crda.sh \
+#     $(LOCAL_PATH)/rootdir/etc/init.qcom.fm.sh:system/etc/init.qcom.fm.sh \
+#     $(LOCAL_PATH)/rootdir/etc/init.qcom.sdio.sh:system/etc/init.qcom.sdio.sh \
+#     $(LOCAL_PATH)/rootdir/etc/init.qcom.wifi.sh:system/etc/init.qcom.wifi.sh \
+#     $(LOCAL_PATH)/rootdir/etc/init.qcom.coex.sh:system/etc/init.qcom.coex.sh \
+#     $(LOCAL_PATH)/rootdir/etc/init.qcom.bt.sh:system/etc/init.qcom.bt.sh \
+#     $(LOCAL_PATH)/rootdir/etc/init.qcom.uicc.sh:system/etc/init.qcom.uicc.sh \
+#     $(LOCAL_PATH)/rootdir/etc/init.qcom.efs.sync.sh:system/etc/init.qcom.efs.sync.sh \
+#     $(LOCAL_PATH)/rootdir/etc/init.qcom.modem_links.sh:system/etc/init.qcom.modem_links.sh 
 
 # Resolution
 TARGET_SCREEN_WIDTH := 480
@@ -52,19 +52,20 @@ TARGET_SCREEN_HEIGHT := 800
 # Insecure adb
 ADDITIONAL_DEFAULT_PROPERTIES += \
 	ro.secure=0 \
-    ro.debuggable=1 \
 	ro.adb.secure=0 \
+	ro.debuggable=1 \
 	persist.service.adb.enable=1
+
+# ANT+
+PRODUCT_PACKAGES += \
+    AntHalService \
+    libantradio \
+    antradio_app \
+    com.dsi.ant.antradio_library
 
 # Doze
 PRODUCT_PACKAGES += \
     SamsungDoze
-
-# Live Wallpapers
-PRODUCT_PACKAGES += \
-    LiveWallpapers \
-    LiveWallpapersPicker \
-    VisualizationWallpapers
 
 # Display
 PRODUCT_PACKAGES += \
@@ -80,15 +81,13 @@ PRODUCT_COPY_FILES += \
 	$(LOCAL_PATH)/keylayout/sec_touchscreen.kl:system/usr/keylayout/sec_touchscreen.kl \
 	$(LOCAL_PATH)/keylayout/gpio-keys.kl:system/usr/keylayout/gpio-keys.kl
 
-
-
 # Connectivity Engine support
 PRODUCT_PACKAGES += \
 	libcnefeatureconfig
 
-# JARS
-PRODUCT_PACKAGES += \
-	com.google.widevine.software.drm
+# # JARS
+# PRODUCT_PACKAGES += \
+# 	com.google.widevine.software.drm
 
 # Keystore
 PRODUCT_PACKAGES += \
@@ -100,7 +99,7 @@ PRODUCT_PACKAGES += \
 
 # Power HAL
 PRODUCT_PACKAGES += \
-	power.qcom
+	power.msm8916
 
 # USB
 PRODUCT_PACKAGES += \
@@ -121,18 +120,6 @@ PRODUCT_COPY_FILES += \
 
 # we have enough storage space to hold precise GC data
 PRODUCT_TAGS += dalvik.gc.type-precise
-
-# WLAN
-# PRODUCT_PACKAGES += \
-# 	hostapd \
-# 	iwconfig \
-# 	hostapd_cli \
-# 	libQWiFiSoftApCfg \
-# 	libqsap_sdk \
-# 	libwpa_client \
-# 	libwcnss_qmi \
-# 	wcnss_service \
-# 	wpa_supplicant
 
 # Overlay
 DEVICE_PACKAGE_OVERLAYS += $(LOCAL_PATH)/overlay

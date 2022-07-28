@@ -16,7 +16,7 @@ vendor/lib/libqmi_common_so.so
 # libNimsWrap
 vendor/lib/libNimsWrap.so
 vendor/lib/libcneconn.so
-lib/libcnefeatureconfig.so
+# lib/libcnefeatureconfig.so
 
 # libdashplayer
 lib/libdashplayer.so
@@ -27,7 +27,7 @@ vendor/lib/libmmipstreamutils.so
 vendor/lib/libmmparser.so
 vendor/lib/libDivxDrm.so
 vendor/lib/libmmipstreamsourcehttp.so
-lib/libtinyxml.so
+# lib/libtinyxml.so
 vendor/lib/libmmQTA.so
 vendor/lib/libmmhttpstack.so
 vendor/lib/libmmipstreamnetwork.so
