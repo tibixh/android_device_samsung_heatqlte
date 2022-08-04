@@ -12,6 +12,6 @@
 /dev/block/bootdevice/by-name/modem          /firmware-modem vfat    ro,shortname=lower,uid=1000,gid=1000,dmask=227,fmask=337                            wait
 /dev/block/bootdevice/by-name/apnhlos        /firmware       vfat    ro,shortname=lower,uid=1000,gid=1000,dmask=227,fmask=337                            wait
 
-/devices/soc.0/7864900.sdhci/mmc_host/mmc1   auto            vfat    default                                                                             voldmanaged=extSdCard:auto,noemulatedsd
+/devices/soc.0/7864900.sdhci/mmc_host/mmc1   auto            auto    default                                                                             voldmanaged=sdcard1:auto
 /devices/platform/msm_hsusb                  auto            auto    default                                                                             wait,voldmanaged=usbdisk:auto
 /dev/block/zram0                             none            swap    defaults                                                                            zramsize=536870912
