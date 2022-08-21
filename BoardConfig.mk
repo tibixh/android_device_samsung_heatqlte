@@ -84,7 +84,8 @@ QCOM_BT_USE_BTNV := true
 BLUETOOTH_HCI_USE_MCT := true
 
 # RIL
-TARGET_RIL_VARIANT := caf
+#BOARD_RIL_CLASS := $(LOCAL_PATH)/ril
+#BOARD_PROVIDES_LIBRIL := true
 
 # Protobuf
 PROTOBUF_SUPPORTED := true
@@ -129,12 +130,11 @@ WIFI_DRIVER_FW_PATH_AP := "ap"
 WIFI_DRIVER_FW_PATH_STA := "sta"
 WPA_SUPPLICANT_VERSION := VER_0_8_X
 
-WLAN_MODULES:
-	mkdir -p $(KERNEL_MODULES_OUT)/pronto
-	mv $(KERNEL_MODULES_OUT)/wlan.ko $(KERNEL_MODULES_OUT)/pronto/pronto_wlan.ko
-	ln -sf $(TARGET_OUT)/lib/modules/pronto/pronto_wlan.ko $(TARGET_OUT)/lib/modules/wlan.ko
+# WLAN_MODULES:
+# 	mkdir -p $(KERNEL_MODULES_OUT)/pronto
+# 	ln -sf $(TARGET_OUT)/lib/modules/pronto/pronto_wlan.ko $(TARGET_OUT)/lib/modules/wlan.ko
 
-#TARGET_KERNEL_MODULES += WLAN_MODULES
+# TARGET_KERNEL_MODULES += WLAN_MODULES
 
 # Time services
 BOARD_USES_QC_TIME_SERVICES := true

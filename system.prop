@@ -1,5 +1,103 @@
 # Screen
-ro.sf.lcd_density=216
+ro.sf.lcd_density=240
+
+# RIL
+rild.libpath=/system/lib/libsec-ril.so
+rild.libargs=-d /dev/smd0
+persist.rild.nitz_plmn=
+persist.rild.nitz_long_ons_0=
+persist.rild.nitz_long_ons_1=
+persist.rild.nitz_long_ons_2=
+persist.rild.nitz_long_ons_3=
+persist.rild.nitz_short_ons_0=
+persist.rild.nitz_short_ons_1=
+persist.rild.nitz_short_ons_2=
+persist.rild.nitz_short_ons_3=
+ril.subscription.types=NV,RUIM
+DEVICE_PROVISIONED=1
+
+# RIL Mods
+persist.data.netmgrd.qos.enable=false
+ro.use_data_netmgrd=false
+ro.data.large_tcp_window_size=true
+persist.radio.atfwd.start=false
+ro.vendor.extension_library=/vendor/lib/libqc-opt.so
+ro.telephony.ril_class=SamsungQcomRIL
+
+# Start in cdma mode
+#ro.telephony.default_network=5
+
+# Display
+debug.composition.type=c2d
+debug.sf.gpu_comp_tiling=1
+debug.mdpcomp.idletime=600
+persist.hwc.mdpcomp.enable=true
+persist.hwc.ptor.enable=true
+ro.opengles.version=196608
+debug.enable.sglscale=1
+
+# CNE
+persist.cne.feature=0
+
+# System props for the MM modules
+media.stagefright.enable-player=true
+media.stagefright.enable-http=true
+media.stagefright.enable-aac=true
+media.stagefright.enable-qcp=true
+media.stagefright.enable-fma2dp=true
+media.stagefright.enable-scan=true
+mmp.enable.3g2=true
+media.aac_51_output_enabled=true
+mm.enable.qcom_parser=262143
+
+# System props for time-services
+persist.timed.enable=true
+
+# cabl
+ro.qualcomm.cabl=0
+
+# Telephony
+telephony.lteOnCdmaDevice=0
+
+# System proverty for sys info indication
+persist.radio.add_power_save=1
+
+# Keep SIM state on LPM mode
+persist.radio.apm_sim_not_pwdn=1
+
+# Simulate sdcard on /data/media
+persist.fuse_sdcard=true
+
+# Snapdragon features
+ro.qc.sdk.audio.ssr=false
+##fluencetype can be "fluence" or "fluencepro" or "none"
+ro.qc.sdk.audio.fluencetype=none
+persist.audio.fluence.voicecall=true
+persist.audio.fluence.voicerec=false
+persist.audio.fluence.speaker=true
+
+# MSM8916 props
+#Buffer size in kbytes for compress offload playback
+audio.offload.buffer.size.kb=32
+#Enable offload audio video playback by default
+av.offload.enable=true
+#enable voice path for PCM VoIP by default
+use.voice.path.for.pcm.voip=true
+
+# FM
+ro.fm.transmitter=false
+audio.offload.gapless.enabled=true
+
+# Use VERY_HIGH_QUALITY for audio resampler
+af.resampler.quality=4
+
+# Defining number of background services for reducing boot complete delay
+#ro.config.max_starting_bg=8
+
+# System property for storage_preload
+persist.sys.storage_preload=1
+
+######### end default props #####
 
 # Art
 dalvik.vm.dex2oat-flags=--no-watch-dog
@@ -28,50 +126,8 @@ ro.config.max_starting_bg=8
 # Bluetooth
 ro.qualcomm.bt.hci_transport=smd
 
-# Display
-debug.composition.type=c2d
-debug.sf.gpu_comp_tiling=1
-debug.mdpcomp.idletime=600
-persist.hwc.mdpcomp.enable=true
-persist.hwc.ptor.enable=true
-ro.opengles.version=196608
-debug.enable.sglscale=1
-
 # GPS
 persist.gps.qc_nlp_in_use=0
 ro.gps.agps_provider=1
 ro.qc.sdk.izat.premium.enabled=0
 ro.qc.sdk.izat.service_mask=0x0
-
-# NITZ
-persist.rild.nitz_plmn=
-persist.rild.nitz_long_ons_0=
-persist.rild.nitz_long_ons_1=
-persist.rild.nitz_long_ons_2=
-persist.rild.nitz_long_ons_3=
-persist.rild.nitz_short_ons_0=
-persist.rild.nitz_short_ons_1=
-persist.rild.nitz_short_ons_2=
-persist.rild.nitz_short_ons_3=
-
-# Radio
-persist.radio.apm_sim_not_pwdn=1
-rild.libargs=-d /dev/smd0
-
-ro.use_data_netmgrd=true
-
-# Time
-persist.timed.enable=true
-
-# perf
-ro.core_ctl_min_cpu=2
-ro.core_ctl_max_cpu=4
-ro.min_freq_0=800000
-ro.vendor.extension_library=libqti-perfd-client.so
-
-#Trim properties
-ro.sys.fw.use_trim_settings=true
-ro.sys.fw.empty_app_percent=50
-ro.sys.fw.trim_empty_percent=100
-ro.sys.fw.trim_cache_percent=100
-ro.sys.fw.trim_enable_memory=1073741824
