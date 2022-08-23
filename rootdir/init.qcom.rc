@@ -65,6 +65,9 @@ on init
     symlink /storage/usbdisk /usbdisk
     symlink /storage/usbdisk /mnt/usbdisk
 
+    # Msim dex
+    export BOOTCLASSPATH ${BOOTCLASSPATH}:/system/framework/telephony-msim.jar
+
 on early-boot
     # set RLIMIT_MEMLOCK to 64MB
     setrlimit 8 67108864 67108864
