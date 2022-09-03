@@ -131,11 +131,7 @@ PRODUCT_PACKAGES += \
 
 # RIL
 PRODUCT_PACKAGES += \
-	libxml2 \
-    rild \
-    libril \
-    librilutils \
-    libsecril-client
+	libxml2
 
 # Keystore
 PRODUCT_PACKAGES += \

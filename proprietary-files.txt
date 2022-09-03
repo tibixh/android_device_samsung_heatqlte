@@ -16,23 +16,6 @@ vendor/lib/libqmi_common_so.so
 # libNimsWrap
 vendor/lib/libNimsWrap.so
 vendor/lib/libcneconn.so
-# lib/libcnefeatureconfig.so
-
-# libdashplayer
-lib/libdashplayer.so
-vendor/lib/libmmipstreamaal.so
-vendor/lib/libmmosal.so
-vendor/lib/libmmiipstreammmihttp.so
-vendor/lib/libmmipstreamutils.so
-vendor/lib/libmmparser.so
-vendor/lib/libDivxDrm.so
-vendor/lib/libmmipstreamsourcehttp.so
-# lib/libtinyxml.so
-vendor/lib/libmmQTA.so
-vendor/lib/libmmhttpstack.so
-vendor/lib/libmmipstreamnetwork.so
-vendor/lib/libmmQSM.so
-vendor/lib/libmmrtpdecoder.so
 
 # Graphics
 etc/firmware/a225_pfp.fw
@@ -63,53 +46,30 @@ vendor/lib/libsc-a2xx.so
 vendor/lib/libsc-a3xx.so
 vendor/lib/libscale.so
 
-# Bluetooth
-bin/btnvtool
-bin/hci_qcomm_init
-vendor/lib/libbtnv.so
-
-# Audio
-vendor/lib/libacdb-fts.so
-vendor/lib/libacdbloader.so
-vendor/lib/libacdbmapper.so
-vendor/lib/libacdbrtac.so
-vendor/lib/libadiertac.so
-vendor/lib/libaudcal.so
-vendor/lib/libaudioalsa.so
-vendor/lib/liblistensoundmodel2.so
-vendor/lib/libqct_resampler.so
-vendor/lib/soundfx/libqcbassboost.so
-vendor/lib/soundfx/libqcreverb.so
-vendor/lib/soundfx/libqcvirt.so
+# libsecnativefeature
+lib/libsecnativefeature.so
 
 # Radio
-bin/diag_mdlog
-bin/diag_uart_log
-bin/netmgrd
-bin/ftm_ptt
-bin/ptt_socket_app
-bin/port-bridge
+bin/rmt_storage
+bin/qmiproxy
 bin/qmuxd
 bin/radish
 bin/rfs_access
-bin/rmt_storage
-bin/wlandutservice
-etc/plmn_delta.bin
-etc/plmn_se13.bin
-etc/srm.bin
-lib/libatparser.so
-lib/libcordon.so
-lib/libfactoryutil.so
-lib/libomission_avoidance.so
+vendor/lib/libcneapiclient.so
+vendor/lib/libCommandSvc.so
 vendor/lib/libconfigdb.so
-vendor/lib/libmdmdetect.so
-vendor/lib/libnetmgr.so
-vendor/lib/libperipheral_client.so
-vendor/lib/libsubsystem_control.so
-vendor/lib/libSubSystemShutdown.so
+vendor/lib/libqmi_csi.so
 vendor/lib/libxml.so
+etc/plmn_se13.bin
 
 # RIL
-lib/libaudio-ril.so
+bin/rild
 lib/libsecril-client.so
+lib/libril.so
+lib/librilutils.so
+lib/libreference-ril.so
+lib/libsec-ril.so
+vendor/lib/libqcci_legacy.so
+vendor/lib/libqmi.so
 vendor/lib/libril-qcril-hook-oem.so
+vendor/lib/libqc-opt.so

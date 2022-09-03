@@ -22,7 +22,7 @@ ro.use_data_netmgrd=false
 ro.data.large_tcp_window_size=true
 persist.radio.atfwd.start=false
 ro.vendor.extension_library=/vendor/lib/libqc-opt.so
-ro.telephony.ril_class=SamsungQcomRIL
+ro.telephony.ril_class=SamsungQualcommRIL
 
 # Start in cdma mode
 #ro.telephony.default_network=5
