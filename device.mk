@@ -73,6 +73,23 @@ PRODUCT_PACKAGES += \
     antradio_app \
     com.dsi.ant.antradio_library
 
+# Audio
+PRODUCT_PACKAGES += \
+    audiod \
+    audio.a2dp.default \
+    audio.usb.default \
+    audio.r_submix.default \
+    audio.primary.msm8916 \
+    audio_policy.msm8916 \
+    libaudio-resampler \
+    tinymix \
+    libtinycompress \
+    libaudioroute
+
+# Configs
+PRODUCT_COPY_FILES += \
+    $(LOCAL_PATH)/configs/mixer_paths.xml:system/etc/mixer_paths.xml
+
 # Doze
 PRODUCT_PACKAGES += \
     SamsungDoze

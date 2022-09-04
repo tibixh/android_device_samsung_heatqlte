@@ -73,3 +73,17 @@ vendor/lib/libqcci_legacy.so
 vendor/lib/libqmi.so
 vendor/lib/libril-qcril-hook-oem.so
 vendor/lib/libqc-opt.so
+
+# Audio
+#lib/hw/audio.primary.msm8916.so
+#lib/libtinycompress.so
+#lib/libaudioroute.so
+lib/libSamsungPreProcess.so
+lib/libsamsungRecord.so
+lib/lib_SamsungRec_V04002.so
+lib/libsamsungVoipResampler.so
+vendor/lib/libacdbloader.so
+vendor/lib/libaudcal.so
+vendor/lib/libacdbrtac.so
+vendor/lib/libadiertac.so
+
