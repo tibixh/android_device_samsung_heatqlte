@@ -15,4 +15,4 @@ Battery | 1900 mAh (removable)
 Dimensions | 121.2 x 62.7 x 10.7 mm
 Display | 480 x 800, 4.0"
 Rear Camera  | 5.0 MP, LED flash
-Front Camera | ???
+Front Camera | 1.3 MP
