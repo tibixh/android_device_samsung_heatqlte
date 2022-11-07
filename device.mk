@@ -73,18 +73,18 @@ PRODUCT_PACKAGES += \
     antradio_app \
     com.dsi.ant.antradio_library
 
-# Audio
-PRODUCT_PACKAGES += \
-    audiod \
-    audio.a2dp.default \
-    audio.usb.default \
-    audio.r_submix.default \
-    audio.primary.msm8916 \
-    audio_policy.msm8916 \
-    libaudio-resampler \
-    tinymix \
-    libtinycompress \
-    libaudioroute
+# # Audio
+# PRODUCT_PACKAGES += \
+#     audiod \
+#     audio.a2dp.default \
+#     audio.usb.default \
+#     audio.r_submix.default \
+#     audio.primary.msm8916 \
+#     audio_policy.msm8916 \
+#     libaudio-resampler \
+#     tinymix \
+#     libtinycompress \
+#     libaudioroute
 
 # Configs
 PRODUCT_COPY_FILES += \
@@ -97,10 +97,6 @@ PRODUCT_COPY_FILES += \
 # Doze
 PRODUCT_PACKAGES += \
     SamsungDoze
-
-# Torch
-PRODUCT_PACKAGES += \
-    Torch
 
 # Hardware specific features
 PRODUCT_COPY_FILES += \
@@ -123,10 +119,10 @@ PRODUCT_COPY_FILES += \
 
 # Display
 PRODUCT_PACKAGES += \
-	copybit.msm8916 \
-	gralloc.msm8916 \
-	hwcomposer.msm8916 \
-	memtrack.msm8916 \
+    copybit.qcom \
+    gralloc.qcom \
+    hwcomposer.qcom \
+    memtrack.msm8916 \
     libtinyxml
 
 # Keylayout & touch
@@ -152,15 +148,9 @@ PRODUCT_PACKAGES += \
     ethertypes \
     libebtc
 
-# Sensors
+# JARS
 PRODUCT_PACKAGES += \
-    sensors.msm8916 \
-    libcalmodule_akm \
-    calmodule.cfg
-
-# # JARS
-# PRODUCT_PACKAGES += \
-# 	com.google.widevine.software.drm
+	com.google.widevine.software.drm
 
 # RIL
 PRODUCT_PACKAGES += \
