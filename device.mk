@@ -1,10 +1,10 @@
-LOCAL_PATH := device/samsung/heatqlte
-
 # Inherit from vendor
 $(call inherit-product-if-exists, vendor/samsung/heatqlte/heatqlte-vendor.mk)
 
 # Inherit from common
 $(call inherit-product, device/samsung/qcom-common/qcom-common.mk)
+
+LOCAL_PATH := device/samsung/heatqlte
 
 # Init
 PRODUCT_COPY_FILES += \
@@ -12,7 +12,6 @@ PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/rootdir/init.qcom.class_core.sh:root/init.qcom.class_core.sh \
     $(LOCAL_PATH)/rootdir/fstab.qcom:root/fstab.qcom \
     $(LOCAL_PATH)/rootdir/init.mdm.sh:root/init.mdm.sh \
-    $(LOCAL_PATH)/rootdir/init.environ.rc:root/init.environ.rc \
     $(LOCAL_PATH)/rootdir/init.qcom.early_boot.sh:root/init.qcom.early_boot.sh \
     $(LOCAL_PATH)/rootdir/ueventd.qcom.rc:root/ueventd.qcom.rc \
     $(LOCAL_PATH)/rootdir/init.qcom.usb.sh:root/init.qcom.usb.sh \
@@ -66,12 +65,11 @@ ifneq ($(TARGET_BUILD_VARIANT),eng)
 	persist.vendor.radio.adb_log_on=1
 endif
 
-# ANT+
+# ANT+ | #TEST
 PRODUCT_PACKAGES += \
     AntHalService \
-    libantradio \
-    antradio_app \
-    com.dsi.ant.antradio_library
+    com.dsi.ant.antradio_library \
+    libantradio
 
 # # Audio
 # PRODUCT_PACKAGES += \
@@ -85,6 +83,14 @@ PRODUCT_PACKAGES += \
 #     tinymix \
 #     libtinycompress \
 #     libaudioroute
+
+# Filesystem
+PRODUCT_PACKAGES += \
+    e2fsck \
+    make_ext4fs
+
+PRODUCT_BOOT_JARS += \
+    qcmediaplayer
 
 # Configs
 PRODUCT_COPY_FILES += \
@@ -115,7 +121,6 @@ PRODUCT_COPY_FILES += \
 	frameworks/native/data/etc/android.hardware.touchscreen.multitouch.jazzhand.xml:system/etc/permissions/android.hardware.touchscreen.multitouch.jazzhand.xml \
 	frameworks/native/data/etc/android.software.sip.voip.xml:system/etc/permissions/android.software.sip.voip.xml \
 	frameworks/native/data/etc/android.hardware.usb.accessory.xml:system/etc/permissions/android.hardware.usb.accessory.xml \
-	packages/wallpapers/LivePicker/android.software.live_wallpaper.xml:system/etc/permissions/android.software.live_wallpaper.xml
 
 # Display
 PRODUCT_PACKAGES += \

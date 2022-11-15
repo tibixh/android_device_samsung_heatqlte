@@ -1,10 +1,10 @@
-LOCAL_PATH := device/samsung/heatqlte
-
 # Inherit from common
 include device/samsung/qcom-common/BoardConfigCommon.mk
 
 # Includes from vendor
 -include vendor/samsung/heatqlte/BoardConfigVendor.mk
+
+LOCAL_PATH := device/samsung/heatqlte
 
 # Asserts
 TARGET_OTA_ASSERT_DEVICE := heatqlte,heatqltexx,g357fz,sm-g357fz
@@ -82,7 +82,6 @@ PROTOBUF_SUPPORTED := true
 BOARD_BLUETOOTH_BDROID_BUILDCFG_INCLUDE_DIR := $(LOCAL_PATH)/bluetooth
 BOARD_HAVE_BLUETOOTH := true
 BOARD_HAVE_BLUETOOTH_QCOM := true
-QCOM_BT_USE_BTNV := true
 BLUETOOTH_HCI_USE_MCT := true
 
 # Lights
