@@ -97,3 +97,6 @@ vendor/lib/libdrmtime.so
 
 # Keystore
 lib/hw/keystore.msm8916.so
+
+# Sensors
+lib/hw/sensors.msm8916.so
