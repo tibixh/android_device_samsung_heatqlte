@@ -3,10 +3,6 @@ LOCAL_PATH := $(call my-dir)
 include $(call all-subdir-makefiles,$(LOCAL_PATH))
 include $(call all-makefiles-under,$(LOCAL_PATH))
 
-# compat.h
-$(shell mkdir -p $(TARGET_OUT)/obj/KERNEL_OBJ/usr/include/linux)
-$(shell cp kernel/samsung/heatqlte/include/linux/compat.h $(TARGET_OUT)/obj/KERNEL_OBJ/usr/include/linux/compat.h)
-
 # CMN
 CMN_IMAGES := \
 	cmnlib.b00 cmnlib.b01 cmnlib.b02 cmnlib.b03 cmnlib.mdt

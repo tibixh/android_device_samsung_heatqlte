@@ -71,18 +71,18 @@ PRODUCT_PACKAGES += \
     com.dsi.ant.antradio_library \
     libantradio
 
-# # Audio
-# PRODUCT_PACKAGES += \
-#     audiod \
-#     audio.a2dp.default \
-#     audio.usb.default \
-#     audio.r_submix.default \
-#     audio.primary.msm8916 \
-#     audio_policy.msm8916 \
-#     libaudio-resampler \
-#     tinymix \
-#     libtinycompress \
-#     libaudioroute
+# Audio
+PRODUCT_PACKAGES += \
+    audiod \
+    audio.a2dp.default \
+    audio.usb.default \
+    audio.r_submix.default \
+    audio.primary.msm8916 \
+    audio_policy.msm8916 \
+    libaudio-resampler \
+    tinymix \
+    libtinycompress \
+    libaudioroute
 
 # Filesystem
 PRODUCT_PACKAGES += \
@@ -128,9 +128,9 @@ PRODUCT_COPY_FILES += \
 
 # Display
 PRODUCT_PACKAGES += \
-    copybit.qcom \
-    gralloc.qcom \
-    hwcomposer.qcom \
+    copybit.msm8916 \
+    gralloc.msm8916 \
+    hwcomposer.msm8916 \
     memtrack.msm8916 \
     libtinyxml
 
@@ -164,10 +164,6 @@ PRODUCT_PACKAGES += \
 # RIL
 PRODUCT_PACKAGES += \
 	libxml2
-
-# Keystore
-PRODUCT_PACKAGES += \
-	keystore.msm8916
 
 # Lights
 PRODUCT_PACKAGES += \
