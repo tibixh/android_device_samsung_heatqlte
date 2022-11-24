@@ -25,7 +25,7 @@ ro.vendor.extension_library=/vendor/lib/libqc-opt.so
 ro.telephony.ril_class=SamsungQcomRIL
 
 # Start in LTE mode
-#ro.telephony.default_network=9
+ro.telephony.default_network=9
 
 # Display
 debug.composition.type=c2d
@@ -102,6 +102,7 @@ persist.sys.storage_preload=1
 
 # Art
 dalvik.vm.dex2oat-flags=--no-watch-dog
+dalvik.vm.heapgrowthlimit=128m
 
 # Audio
 tunnel.audio.encode=false
