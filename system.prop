@@ -1,6 +1,9 @@
 # Screen
 ro.sf.lcd_density=240
 
+# Swap
+ro.config.zram=true
+
 # RIL
 rild.libpath=/system/lib/libsec-ril.so
 rild.libargs=-d /dev/smd0
