@@ -98,13 +98,38 @@ PRODUCT_PACKAGES += \
     e2fsck \
     make_ext4fs
 
-PRODUCT_BOOT_JARS += \
-    qcmediaplayer
-
 # Configs
 PRODUCT_COPY_FILES += \
-    $(LOCAL_PATH)/configs/media/media_codecs.xml:system/etc/media_codecs.xml \
     $(LOCAL_PATH)/configs/sec_config:system/etc/sec_config
+
+# Media
+PRODUCT_PACKAGES += \
+	libdashplayer \
+	libdivxdrmdecrypt \
+	libmm-omxcore \
+	libOmxAacEnc \
+	libOmxAmrEnc \
+	libOmxCore \
+	libOmxEvrcEnc \
+	libOmxQcelp13Enc \
+	libOmxSwVencMpeg4 \
+	libOmxVdec \
+	libOmxVdecHevc \
+	libOmxVenc \
+	libOmxVidEnc \
+	libOmxVdpp \
+	libstagefrighthw \
+	qcmediaplayer
+
+PRODUCT_COPY_FILES += \
+    frameworks/av/media/libstagefright/data/media_codecs_google_audio.xml:system/etc/media_codecs_google_audio.xml \
+    frameworks/av/media/libstagefright/data/media_codecs_google_telephony.xml:system/etc/media_codecs_google_telephony.xml \
+    frameworks/av/media/libstagefright/data/media_codecs_google_video_le.xml:system/etc/media_codecs_google_video_le.xml \
+    $(LOCAL_PATH)/configs/media/media_codecs.xml:system/etc/media_codecs.xml \
+    $(LOCAL_PATH)/configs/media/media_profiles.xml:system/etc/media_profiles.xml
+
+PRODUCT_BOOT_JARS += \
+    qcmediaplayer
 
 # Doze
 PRODUCT_PACKAGES += \
