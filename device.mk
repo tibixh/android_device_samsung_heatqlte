@@ -6,6 +6,9 @@ $(call inherit-product-if-exists, vendor/samsung/heatqlte/heatqlte-vendor.mk)
 # Inherit from common
 $(call inherit-product, device/samsung/qcom-common/qcom-common.mk)
 
+# Inhert dalvik heap values from aosp
+$(call inherit-product, frameworks/native/build/phone-xhdpi-1024-dalvik-heap.mk)
+
 # Init
 PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/rootdir/init.carrier.rc:root/init.carrier.rc \
