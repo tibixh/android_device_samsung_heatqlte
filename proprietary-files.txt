@@ -95,3 +95,5 @@ vendor/lib/librpmb.so
 vendor/lib/libssd.so
 vendor/lib/libdrmtime.so
 
+# Sensors
+lib/hw/sensors.msm8916.so
