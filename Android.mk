@@ -45,7 +45,7 @@ ALL_DEFAULT_INSTALLED_MODULES += $(ISDB_SYMLINKS)
 KM_IMAGES := \
 	keymaster.b00 keymaster.b01 keymaster.b02 keymaster.b03 keymaster.mdt
 
-KM_SYMLINKS := $(addprefix $(TARGET_OUT_VENDOR)/firmware/keymaster/,$(notdir $(KM_IMAGES)))
+KM_SYMLINKS := $(addprefix $(TARGET_OUT_ETC)/firmware/keymaster/,$(notdir $(KM_IMAGES)))
 $(KM_SYMLINKS): $(LOCAL_INSTALLED_MODULE)
 	@echo "Keymaster firmware link: $@"
 	@mkdir -p $(dir $@)
@@ -237,7 +237,7 @@ ALL_DEFAULT_INSTALLED_MODULES += $(WCNSS_SYMLINKS)
 WV_IMAGES := \
 	widevine.b00 widevine.b01 widevine.b02 widevine.b03 widevine.mdt
 
-WV_SYMLINKS := $(addprefix $(TARGET_OUT_VENDOR)/firmware/,$(notdir $(WV_IMAGES)))
+WV_SYMLINKS := $(addprefix $(TARGET_OUT_ETC)/firmware/,$(notdir $(WV_IMAGES)))
 $(WV_SYMLINKS): $(LOCAL_INSTALLED_MODULE)
 	@echo "Widevine firmware link: $@"
 	@mkdir -p $(dir $@)

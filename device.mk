@@ -1,5 +1,5 @@
 # Inherit from vendor
-$(call inherit-product-if-exists, vendor/samsung/heatqlte/heatqlte-vendor.mk)
+$(call inherit-product-if-exists, vendor/samsung/heatqlte/heatqlte-vendor-blobs.mk)
 
 # Inherit from common
 $(call inherit-product, device/samsung/qcom-common/qcom-common.mk)
@@ -8,6 +8,17 @@ $(call inherit-product, device/samsung/qcom-common/qcom-common.mk)
 $(call inherit-product, frameworks/native/build/phone-xhdpi-1024-dalvik-heap.mk)
 
 LOCAL_PATH := device/samsung/heatqlte
+
+# Insecure adb
+ifeq ($(TARGET_BUILD_VARIANT),userdebug)
+    ADDITIONAL_DEFAULT_PROPERTIES += \
+	ro.secure=0 \
+	ro.root=1 \
+	ro.adb.secure=0 \
+	ro.debuggable=1 \
+	persist.service.adb.enable=1 \
+	persist.vendor.radio.adb_log_on=1
+endif
 
 # Init
 PRODUCT_COPY_FILES += \
@@ -58,16 +69,6 @@ TARGET_SCREEN_HEIGHT := 800
 PRODUCT_PACKAGES += \
     libskia_legacy
 
-# Insecure adb
-ifneq ($(TARGET_BUILD_VARIANT),eng)
-    ADDITIONAL_DEFAULT_PROPERTIES += \
-	ro.secure=0 \
-	ro.adb.secure=0 \
-	ro.debuggable=1 \
-	persist.service.adb.enable=1 \
-	persist.vendor.radio.adb_log_on=1
-endif
-
 # ANT+
 PRODUCT_PACKAGES += \
     AntHalService \
@@ -103,8 +104,18 @@ PRODUCT_COPY_FILES += \
 
 # Media
 PRODUCT_PACKAGES += \
+	libextmedia_jni \
 	libdashplayer \
 	libdivxdrmdecrypt \
+	libdrmclearkeyplugin \
+    qcmediaplayer \
+	libstagefrighthw
+
+PRODUCT_BOOT_JARS += \
+    qcmediaplayer
+
+# OpenMAX
+PRODUCT_PACKAGES += \
 	libmm-omxcore \
 	libOmxAacEnc \
 	libOmxAmrEnc \
@@ -116,10 +127,9 @@ PRODUCT_PACKAGES += \
 	libOmxVdecHevc \
 	libOmxVenc \
 	libOmxVidEnc \
-	libOmxVdpp \
-	libstagefrighthw \
-	qcmediaplayer
+	libOmxVdpp
 
+# Media configuration
 PRODUCT_COPY_FILES += \
     frameworks/av/media/libstagefright/data/media_codecs_google_audio.xml:system/etc/media_codecs_google_audio.xml \
     frameworks/av/media/libstagefright/data/media_codecs_google_telephony.xml:system/etc/media_codecs_google_telephony.xml \
@@ -127,8 +137,6 @@ PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/configs/media/media_codecs.xml:system/etc/media_codecs.xml \
     $(LOCAL_PATH)/configs/media/media_profiles.xml:system/etc/media_profiles.xml
 
-PRODUCT_BOOT_JARS += \
-    qcmediaplayer
 
 # Doze
 PRODUCT_PACKAGES += \
@@ -158,11 +166,16 @@ PRODUCT_COPY_FILES += \
 
 # Display
 PRODUCT_PACKAGES += \
-    copybit.msm8916 \
-    gralloc.msm8916 \
-    hwcomposer.msm8916 \
-    memtrack.msm8916 \
-    libtinyxml
+	copybit.msm8916 \
+	gralloc.msm8916 \
+	hwcomposer.msm8916 \
+	libtinyxml \
+	libtinyxml2 \
+	memtrack.msm8916
+
+# Keystore
+PRODUCT_PACKAGES += \
+	keystore.msm8916
 
 # Keylayout & touch
 PRODUCT_COPY_FILES += \
@@ -193,30 +206,63 @@ PRODUCT_PACKAGES += \
 
 # Lights
 PRODUCT_PACKAGES += \
-	lights.msm8916
+	lights.qcom
 
-# Power HAL
+# Power
 PRODUCT_PACKAGES += \
-	power.msm8916
+	power.qcom
 
-# USB
+# # USB
+# PRODUCT_PACKAGES += \
+# 	com.android.future.usb.accessory
+
+# FM
 PRODUCT_PACKAGES += \
-	com.android.future.usb.accessory
+	FM2 \
+	FMRecord \
+	libqcomfm_jni \
+	qcom.fmradio
+
+# NFC
+PRODUCT_PACKAGES += \
+	Tag \
+	com.android.nfc_extras \
+	com.android.nfc.helper \
+	NfcNci \
+	libnfc-nci
+
+PRODUCT_COPY_FILES += \
+	$(LOCAL_PATH)/configs/nfc/libnfc-sec-hal.conf:system/etc/libnfc-sec-hal.conf \
+	$(LOCAL_PATH)/configs/nfc/libnfc-sec.conf:system/etc/libnfc-brcm.conf \
+	$(LOCAL_PATH)/configs/nfc/nfcee_access.xml:system/etc/nfcee_access.xml \
+	frameworks/native/data/etc/com.android.nfc_extras.xml:system/etc/permissions/com.android.nfc_extras.xml \
+	packages/apps/Nfc/migrate_nfc.txt:system/etc/updatecmds/migrate_nfc.txt
+
+# DRM
+PRODUCT_PACKAGES += \
+	com.google.widevine.software.drm
 
 # Bluetooth
 PRODUCT_PACKAGES += \
 	javax.btobex \
 	libbt-vendor
 
+# WiDi
+PRODUCT_PACKAGES += \
+	com.android.media.remotedisplay \
+	com.android.media.remotedisplay.xml
+
 # Wifi
 PRODUCT_PACKAGES += \
-    libqsap_sdk \
-    libQWiFiSoftApCfg \
-    libwpa_client \
-    hostapd \
-    wpa_supplicant \
-    libwcnss_qmi \
-    wcnss_service
+	hostapd \
+	iwconfig \
+	hostapd_cli \
+	libQWiFiSoftApCfg \
+	libqsap_sdk \
+	libwpa_client \
+	libwcnss_qmi \
+	wcnss_service \
+	wpa_supplicant
 
 PRODUCT_COPY_FILES += \
 	$(LOCAL_PATH)/configs/wifi/cred.conf:system/etc/wifi/cred.conf \
@@ -227,8 +273,7 @@ PRODUCT_COPY_FILES += \
 	$(LOCAL_PATH)/configs/wifi/p2p_supplicant_overlay.conf:system/etc/wifi/p2p_supplicant_overlay.conf \
 	$(LOCAL_PATH)/configs/wifi/wpa_supplicant_overlay.conf:system/etc/wifi/wpa_supplicant_overlay.conf \
 	$(LOCAL_PATH)/configs/wifi/WCNSS_qcom_cfg.ini:system/etc/firmware/wlan/prima/WCNSS_qcom_cfg.ini \
-	$(LOCAL_PATH)/configs/wifi/WCNSS_qcom_wlan_nv.bin:system/etc/firmware/wlan/prima/WCNSS_qcom_wlan_nv.bin \
-    kernel/samsung/heatqlte/drivers/staging/prima/firmware_bin/WCNSS_cfg.dat:system/etc/firmware/wlan/prima/WCNSS_cfg.dat
+	$(LOCAL_PATH)/configs/wifi/WCNSS_qcom_wlan_nv.bin:system/etc/firmware/wlan/prima/WCNSS_qcom_wlan_nv.bin
 
 # we have enough storage space to hold precise GC data
 PRODUCT_TAGS += dalvik.gc.type-precise
