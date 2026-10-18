@@ -120,7 +120,10 @@ set_light_backlight(struct light_device_t* dev,
         return -1;
     }
     pthread_mutex_lock(&g_lock);
-    err = write_int(LCD_FILE, brightness);
+    // Skip brightness values 41,42,43 as our display doesnt like those
+    if (brightness <= 40 || brightness >= 44){
+        err = write_int(LCD_FILE, brightness);
+    }
     pthread_mutex_unlock(&g_lock);
     return err;
 }
