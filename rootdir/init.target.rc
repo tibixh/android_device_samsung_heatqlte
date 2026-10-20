@@ -61,10 +61,6 @@ on fs
 
     setprop ro.crypto.fuse_sdcard true
 
-# /firmware and /firmware-modem are mounted by mount_all in the "fs" trigger
-# above (see fstab.qcom). The old "fs_selinux"/"fs_selinux_disable" triggers
-# only exist in Samsung's stock init; they never run with CM's init.
-
 on post-fs-data
     mkdir /data/tombstones 0771 system system
     mkdir /tombstones/modem 0771 system system
