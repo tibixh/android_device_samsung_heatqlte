@@ -61,21 +61,9 @@ on fs
 
     setprop ro.crypto.fuse_sdcard true
 
-on fs_selinux
-    wait /dev/block/bootdevice/by-name/apnhlos
-    mount vfat /dev/block/bootdevice/by-name/apnhlos /firmware ro shortname=lower,uid=1000,gid=1000,dmask=227,fmask=337,context=u:object_r:firmware:s0
-    
-    wait /dev/block/bootdevice/by-name/modem
-    mount vfat /dev/block/bootdevice/by-name/modem /firmware-modem ro shortname=lower,uid=1000,gid=1000,dmask=227,fmask=337,context=u:object_r:firmware:s0
-    #write /sys/kernel/boot_adsp/boot 1
-
-on fs_selinux_disable
-    wait /dev/block/bootdevice/by-name/apnhlos
-    mount vfat /dev/block/bootdevice/by-name/apnhlos /firmware ro shortname=lower,uid=1000,gid=1000,dmask=227,fmask=337
-    
-    wait /dev/block/bootdevice/by-name/modem
-    mount vfat /dev/block/bootdevice/by-name/modem /firmware-modem ro shortname=lower,uid=1000,gid=1000,dmask=227,fmask=337
-    #write /sys/kernel/boot_adsp/boot 1
+# /firmware and /firmware-modem are mounted by mount_all in the "fs" trigger
+# above (see fstab.qcom). The old "fs_selinux"/"fs_selinux_disable" triggers
+# only exist in Samsung's stock init; they never run with CM's init.
 
 on post-fs-data
     mkdir /data/tombstones 0771 system system
@@ -163,7 +151,7 @@ on property:init.svc.surfaceflinger=running
 service wcnss-service /system/bin/wcnss_service
     class main
     user system
-    group system wifi radio
+    group system wifi radio drmrpc
     oneshot
 
 service imsqmidaemon /system/bin/imsqmidaemon
