@@ -1,21 +1,8 @@
 # Time
 bin/time_daemon
 lib/libcommon_time_client.so
-vendor/lib/libtime_genoff.so
+-vendor/lib/libtime_genoff.so
 vendor/lib/libTimeService.so
-vendor/lib/libqmi_cci.so
-vendor/lib/libqmi_encdec.so
-vendor/lib/libqmi_client_qmux.so
-vendor/lib/libdiag.so
-vendor/lib/libdsutils.so
-vendor/lib/libmdmdetect.so
-vendor/lib/libqmiservices.so
-vendor/lib/libidl.so
-vendor/lib/libqmi_common_so.so
-
-# libNimsWrap
-vendor/lib/libNimsWrap.so
-vendor/lib/libcneconn.so
 
 # Graphics
 etc/firmware/a225_pfp.fw
@@ -46,15 +33,18 @@ vendor/lib/libsc-a2xx.so
 vendor/lib/libsc-a3xx.so
 vendor/lib/libscale.so
 
-# libsecnativefeature
+# Samsung connectivity
 lib/libsecnativefeature.so
+vendor/lib/libNimsWrap.so
+vendor/lib/libcneconn.so
 
-# Radio
+# Modem
 bin/rmt_storage
 bin/qmiproxy
 bin/qmuxd
 bin/radish
 bin/rfs_access
+bin/irsc_util
 vendor/lib/libcneapiclient.so
 vendor/lib/libCommandSvc.so
 vendor/lib/libconfigdb.so
@@ -63,16 +53,24 @@ vendor/lib/libxml.so
 etc/plmn_se13.bin
 
 # RIL
-bin/rild
-lib/libsecril-client.so
-lib/libril.so
-lib/librilutils.so
-lib/libreference-ril.so
 lib/libsec-ril.so
 vendor/lib/libqcci_legacy.so
 vendor/lib/libqmi.so
 vendor/lib/libril-qcril-hook-oem.so
-vendor/lib/libqc-opt.so
+
+# Bluetooth
+bin/btnvtool
+bin/hci_qcomm_init
+vendor/lib/libbtnv.so
+
+# FM
+bin/fmconfig
+bin/fm_qsoc_patches
+
+# NFC
+lib/hw/nfc_nci.MSM8916.so
+vendor/firmware/sec_s3fwrn5_firmware.bin
+etc/sec_s3fwrn5_rfreg.bin
 
 # Audio
 #lib/hw/audio.primary.msm8916.so
@@ -87,14 +85,31 @@ vendor/lib/libaudcal.so
 vendor/lib/libacdbrtac.so
 vendor/lib/libadiertac.so
 
-# DRM
+# ADSP
+bin/adsprpcd
+vendor/lib/libadsprpc.so
+
+# Media
+lib/libdashplayer.so
+
+# Qcom
 bin/qseecomd
 vendor/lib/libQSEEComAPI.so
+vendor/lib/libqc-opt.so
+vendor/lib/libqmi_cci.so
+vendor/lib/libqmi_encdec.so
+vendor/lib/libqmi_client_qmux.so
+vendor/lib/libdiag.so
+vendor/lib/libdsutils.so
+vendor/lib/libmdmdetect.so
+vendor/lib/libqmiservices.so
+vendor/lib/libidl.so
+vendor/lib/libqmi_common_so.so
 vendor/lib/libdrmfs.so
 vendor/lib/librpmb.so
 vendor/lib/libssd.so
 vendor/lib/libdrmtime.so
-
+lib/libMcClient.so
 
 # Sensors
 lib/hw/sensors.msm8916.so
