@@ -1,5 +1,5 @@
 # Inherit from vendor
-$(call inherit-product-if-exists, vendor/samsung/heatqlte/heatqlte-vendor-blobs.mk)
+$(call inherit-product-if-exists, vendor/samsung/heatqlte/heatqlte-vendor.mk)
 
 # Inherit from common
 $(call inherit-product, device/samsung/qcom-common/qcom-common.mk)
@@ -36,7 +36,6 @@ PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/rootdir/init.qcom.usb.rc:root/init.qcom.usb.rc \
     $(LOCAL_PATH)/rootdir/init.qcom.rc:root/init.qcom.rc \
     $(LOCAL_PATH)/rootdir/init.samsung.rc:root/init.samsung.rc \
-    $(LOCAL_PATH)/rootdir/ueventd.rc:root/ueventd.rc \
     $(LOCAL_PATH)/rootdir/init.qcom.ssr.sh:root/init.qcom.ssr.sh \
     $(LOCAL_PATH)/rootdir/init.trace.rc:root/init.trace.rc \
     $(LOCAL_PATH)/rootdir/init.qcom.sh:root/init.qcom.sh \
@@ -101,6 +100,10 @@ PRODUCT_PACKAGES += \
 # Configs
 PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/configs/sec_config:system/etc/sec_config
+
+# Time services
+PRODUCT_PACKAGES += \
+    TimeService
 
 # Media
 PRODUCT_PACKAGES += \
@@ -179,9 +182,9 @@ PRODUCT_PACKAGES += \
 
 # Keylayout & touch
 PRODUCT_COPY_FILES += \
-	$(LOCAL_PATH)/keylayout/sec_touchkey.kl:system/usr/keylayout/sec_touchkey.kl \
-	$(LOCAL_PATH)/keylayout/sec_touchscreen.kl:system/usr/keylayout/sec_touchscreen.kl \
-	$(LOCAL_PATH)/keylayout/gpio-keys.kl:system/usr/keylayout/gpio-keys.kl
+	$(LOCAL_PATH)/configs/keylayout/sec_touchkey.kl:system/usr/keylayout/sec_touchkey.kl \
+	$(LOCAL_PATH)/configs/keylayout/sec_touchscreen.kl:system/usr/keylayout/sec_touchscreen.kl \
+	$(LOCAL_PATH)/configs/keylayout/gpio-keys.kl:system/usr/keylayout/gpio-keys.kl
 
 # Connectivity Engine support
 PRODUCT_PACKAGES += \
@@ -206,15 +209,12 @@ PRODUCT_PACKAGES += \
 
 # Lights
 PRODUCT_PACKAGES += \
-	lights.qcom
+	lights.msm8916
 
 # Power
 PRODUCT_PACKAGES += \
 	power.qcom
 
-# # USB
-# PRODUCT_PACKAGES += \
-# 	com.android.future.usb.accessory
 
 # FM
 PRODUCT_PACKAGES += \
