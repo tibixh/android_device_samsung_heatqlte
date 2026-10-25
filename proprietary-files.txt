@@ -63,10 +63,6 @@ bin/btnvtool
 bin/hci_qcomm_init
 vendor/lib/libbtnv.so
 
-# FM
-bin/fmconfig
-bin/fm_qsoc_patches
-
 # NFC
 lib/hw/nfc_nci.MSM8916.so
 vendor/firmware/sec_s3fwrn5_firmware.bin
