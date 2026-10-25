@@ -76,24 +76,59 @@ etc/sec_s3fwrn5_rfreg.bin
 #lib/hw/audio.primary.msm8916.so
 #lib/libtinycompress.so
 #lib/libaudioroute.so
+
 lib/libSamsungPreProcess.so
 lib/libsamsungRecord.so
 lib/lib_SamsungRec_V04002.so
 lib/libsamsungVoipResampler.so
 vendor/lib/libacdbloader.so
-vendor/lib/libaudcal.so
+vendor/lib/libacdbmapper.so
 vendor/lib/libacdbrtac.so
 vendor/lib/libadiertac.so
+vendor/lib/libaudcal.so
+vendor/lib/libaudioalsa.so
+vendor/lib/liblistensoundmodel2.so
+-vendor/lib/libqct_resampler.so
+vendor/lib/soundfx/libqcbassboost.so
+vendor/lib/soundfx/libqcreverb.so
+vendor/lib/soundfx/libqcvirt.so
 
 # ADSP
 bin/adsprpcd
 vendor/lib/libadsprpc.so
 
 # Media
+vendor/lib/libExtendedExtractor.so
+vendor/lib/libFlacSwDec.so
+-vendor/lib/libHevcSwDecoder.so
+vendor/lib/libI420colorconvert.so
+vendor/lib/libmmqjpeg_codec.so
+vendor/lib/libmmjpeg.so
+vendor/lib/libmmosal.so
+vendor/lib/libDivxDrm.so
+vendor/lib/libmm-abl.so
+vendor/lib/libmm-abl-oem.so
+vendor/lib/libmm-color-convertor.so
+vendor/lib/libmm-disp-apis.so
+vendor/lib/libmm-hdcpmgr.so
+vendor/lib/libmmparser.so
+vendor/lib/libmm-qdcm.so
+vendor/lib/libOmxAacDec.so
+vendor/lib/libOmxEvrcDec.so
+vendor/lib/libOmxQcelp13Dec.so
+vendor/lib/libqomx_jpegdec.so
+vendor/media/LMspeed_508.emd
+vendor/media/PFFprec_600.emd
 lib/libdashplayer.so
 
-# Qcom
+# Qcom / DRM
 bin/qseecomd
+lib/libdrmdecrypt.so
+vendor/lib/libmmQSM.so
+vendor/lib/libmmrtpdecoder.so
+vendor/lib/libprdrmdecrypt.so
+vendor/lib/libtzdrmgenprov.so
+vendor/lib/libtzplayready.so
 vendor/lib/libQSEEComAPI.so
 vendor/lib/libqc-opt.so
 vendor/lib/libqmi_cci.so
@@ -110,6 +145,7 @@ vendor/lib/librpmb.so
 vendor/lib/libssd.so
 vendor/lib/libdrmtime.so
 lib/libMcClient.so
+
 
 # Sensors
 lib/hw/sensors.msm8916.so

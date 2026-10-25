@@ -127,7 +127,6 @@ PRODUCT_PACKAGES += \
 	libOmxQcelp13Enc \
 	libOmxSwVencMpeg4 \
 	libOmxVdec \
-	libOmxVdecHevc \
 	libOmxVenc \
 	libOmxVidEnc \
 	libOmxVdpp
