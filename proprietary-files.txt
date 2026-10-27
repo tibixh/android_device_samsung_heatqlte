@@ -68,11 +68,19 @@ lib/hw/nfc_nci.MSM8916.so
 vendor/firmware/sec_s3fwrn5_firmware.bin
 etc/sec_s3fwrn5_rfreg.bin
 
-# Audio
-#lib/hw/audio.primary.msm8916.so
-#lib/libtinycompress.so
-#lib/libaudioroute.so
+# GPS
+lib/hw/gps.default.so
+lib/libloc_core.so
+lib/libloc_eng.so
+lib/libgps.utils.so
+-lib/libloc_api_v02.so
+vendor/lib/hw/flp.default.so
+vendor/lib/libgeofence.so
+vendor/lib/libizat_core.so
+vendor/lib/liblbs_core.so
+vendor/lib/liblocationservice.so
 
+# Audio
 lib/libSamsungPreProcess.so
 lib/libsamsungRecord.so
 lib/lib_SamsungRec_V04002.so
@@ -141,7 +149,6 @@ vendor/lib/librpmb.so
 vendor/lib/libssd.so
 vendor/lib/libdrmtime.so
 lib/libMcClient.so
-
 
 # Sensors
 lib/hw/sensors.msm8916.so
