@@ -1897,4 +1897,44 @@
     <path name="capture-fm">
     </path>
 
+    <path name="voice-handset">
+        <path name="voice-call-handset" />
+    </path>
+
+    <path name="voice-speaker">
+        <path name="voice-call-speaker" />
+    </path>
+
+    <path name="voice-headphones">
+        <path name="voice-call-headset" />
+    </path>
+
+    <path name="voice-speaker-dmic-ef">
+        <path name="main-sub-mic" />
+    </path>
+
+    <path name="voice-tty-full-headphones">
+        <path name="voice-call-headset" />
+    </path>
+
+    <path name="voice-tty-vco-headphones">
+        <path name="voice-call-headset" />
+    </path>
+
+    <path name="voice-tty-hco-handset">
+        <path name="voice-call-handset" />
+    </path>
+
+    <path name="voice-tty-full-headset-mic">
+        <path name="voice-call-headset-mic" />
+    </path>
+
+    <path name="voice-tty-vco-handset-mic">
+        <path name="voice-call-main-mic" />
+    </path>
+
+    <path name="voice-tty-hco-headset-mic">
+        <path name="voice-call-headset-mic" />
+    </path>
+
 </mixer>
