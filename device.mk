@@ -105,6 +105,12 @@ PRODUCT_COPY_FILES += \
 PRODUCT_PACKAGES += \
     TimeService
 
+# GPS
+PRODUCT_COPY_FILES += \
+	$(LOCAL_PATH)/configs/gps/flp.conf:system/etc/flp.conf \
+	$(LOCAL_PATH)/configs/gps/gps.conf:system/etc/gps.conf \
+	$(LOCAL_PATH)/configs/gps/sap.conf:system/etc/sap.conf
+
 # Media
 PRODUCT_PACKAGES += \
 	libextmedia_jni \
