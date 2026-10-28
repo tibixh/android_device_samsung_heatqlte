@@ -22,42 +22,59 @@ do
 done
 
 if [ "x$NC" != "x1" ]; then
-  rm -rf $BASE/*
+  rm -rf "${BASE:?}"/*
 fi
 
-for FILE in `grep -v ^# ../$DEVICE/proprietary-files.txt | grep -v ^$ | sort`
-do
-  # Split the file from the destination (format is "file[:destination]")
-  OLDIFS=$IFS IFS=":" PARSING_ARRAY=($FILE) IFS=$OLDIFS
-  FILE=${PARSING_ARRAY[0]}
-  DEST=${PARSING_ARRAY[1]}
-  if [[ "$FILE" =~ ^-.* ]]; then
-    FILE=`echo $FILE | sed s/^-//`
+fetch_blob() {
+  local SRC=$1
+  local DST=$2
+
+  if [ -z "$LDIR" ]; then
+    adb pull "/system/$SRC" "$BASE/$DST"
+  else
+    cp -- "$LDIR/system/$SRC" "$BASE/$DST"
   fi
-  if [ -z "$DEST" ]; then
+}
+
+while IFS= read -r LINE || [ -n "$LINE" ]; do
+  LINE=${LINE%$'\r'}
+  LINE=${LINE%%#*}
+  LINE=${LINE#"${LINE%%[![:space:]]*}"}
+  LINE=${LINE%"${LINE##*[![:space:]]}"}
+
+  [ -z "$LINE" ] && continue
+
+  case "$LINE" in
+    -*) LINE=${LINE#-}
+        LINE=${LINE#"${LINE%%[![:space:]]*}"} ;;
+  esac
+
+  FILE=${LINE%%:*}
+  if [ "$FILE" = "$LINE" ]; then
     DEST=$FILE
-  fi
-  DIR=`dirname $DEST`
-  if [ ! -d $BASE/$DIR ]; then
-    mkdir -p $BASE/$DIR
+  else
+    DEST=${LINE#*:}
+    DEST=${DEST#"${DEST%%[![:space:]]*}"}
+    DEST=${DEST%"${DEST##*[![:space:]]}"}
+    [ -z "$DEST" ] && DEST=$FILE
   fi
 
+  FILE=${FILE#"${FILE%%[![:space:]]*}"}
+  FILE=${FILE%"${FILE##*[![:space:]]}"}
+  [ -z "$FILE" ] && continue
+
+  mkdir -p -- "$BASE/$(dirname -- "$DEST")"
+
   if [ "x$SETUP" != "x1" ]; then
-    if [ -z $LDIR ]; then
-      adb pull /system/$FILE $BASE/$DEST
-    else
-      cp $LDIR/system/$FILE $BASE/$DEST
-    fi
-    # if file dot not exist try destination
-    if [ "$?" != "0" ]; then
-      if [ -z $LDIR ]; then
-        adb pull /system/$DEST $BASE/$DEST
+    if ! fetch_blob "$FILE" "$DEST"; then
+      if [ "$DEST" != "$FILE" ] && fetch_blob "$DEST" "$DEST"; then
+        :
       else
-        cp $LDIR/system/$DEST $BASE/$DEST
+        echo "warning: failed to extract $FILE" >&2
       fi
     fi
   fi
-done
+done < "../$DEVICE/proprietary-files.txt"
 
 bash setup-makefiles.sh
 
