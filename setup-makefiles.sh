@@ -63,6 +63,9 @@ while IFS= read -r LINE || [[ -n "$LINE" ]]; do
         LINE="${LINE#-}"
     fi
 
+    # Ignore device-specific source suffix
+    LINE="${LINE%%|*}"
+
     # Parse source[:destination].
     if [[ "$LINE" == *:* ]]; then
         SRC="${LINE%%:*}"

@@ -28,11 +28,12 @@ fi
 fetch_blob() {
   local SRC=$1
   local DST=$2
+  local SRC_DEVICE=$3
 
   if [ -z "$LDIR" ]; then
     adb pull "/system/$SRC" "$BASE/$DST"
   else
-    cp -- "$LDIR/system/$SRC" "$BASE/$DST"
+    cp -- "$LDIR/$SRC_DEVICE/system/$SRC" "$BASE/$DST"
   fi
 }
 
@@ -47,6 +48,18 @@ while IFS= read -r LINE || [ -n "$LINE" ]; do
   case "$LINE" in
     -*) LINE=${LINE#-}
         LINE=${LINE#"${LINE%%[![:space:]]*}"} ;;
+  esac
+
+  # Select source device
+  SRC_DEVICE=$DEVICE
+
+  case "$LINE" in
+    *'|'*)
+      SRC_DEVICE=${LINE##*|}
+      SRC_DEVICE=${SRC_DEVICE#"${SRC_DEVICE%%[![:space:]]*}"}
+      SRC_DEVICE=${SRC_DEVICE%"${SRC_DEVICE##*[![:space:]]}"}
+      LINE=${LINE%|*}
+      ;;
   esac
 
   FILE=${LINE%%:*}
@@ -66,15 +79,29 @@ while IFS= read -r LINE || [ -n "$LINE" ]; do
   mkdir -p -- "$BASE/$(dirname -- "$DEST")"
 
   if [ "x$SETUP" != "x1" ]; then
-    if ! fetch_blob "$FILE" "$DEST"; then
-      if [ "$DEST" != "$FILE" ] && fetch_blob "$DEST" "$DEST"; then
+    if ! fetch_blob "$FILE" "$DEST" "$SRC_DEVICE"; then
+      if [ "$DEST" != "$FILE" ] && fetch_blob "$DEST" "$DEST" "$SRC_DEVICE"; then
         :
       else
-        echo "warning: failed to extract $FILE" >&2
+        echo "warning: failed to extract $FILE from $SRC_DEVICE" >&2
       fi
     fi
   fi
 done < "../$DEVICE/proprietary-files.txt"
+
+# Patch camera HAL
+CAMERA_HAL="$BASE/lib/hw/camera.vendor.msm8916.so"
+if [ "x$SETUP" != "x1" ] && [ -f "$CAMERA_HAL" ]; then
+  if ! command -v patchelf >/dev/null 2>&1; then
+    echo "error: patchelf is required to retarget $CAMERA_HAL" >&2
+    exit 1
+  fi
+
+  if patchelf --print-needed "$CAMERA_HAL" | grep -qx 'libqc-opt.so'; then
+    patchelf --replace-needed libqc-opt.so libqti-perfd-client.so "$CAMERA_HAL"
+    printf "Patched camera.vendor.msm8916.so \n"
+  fi
+fi
 
 bash setup-makefiles.sh
 
