@@ -1,3 +1,3 @@
 #============= platform_app ==============
-allow platform_app battery_service:service_manager find;
-allow platform_app healthd_service:service_manager find;
+# com.android.timeservice talks to time_daemon over the time_genoff socket
+allow platform_app time_daemon:unix_stream_socket connectto;

@@ -1,1 +1,3 @@
-allow netd firmware_file:dir { search };
+#============= netd ==============
+# netd probes /firmware (vfat) at boot
+allow netd vfat:dir search;

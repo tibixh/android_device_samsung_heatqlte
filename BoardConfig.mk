@@ -21,7 +21,41 @@ TARGET_PLATFORM_DEVICE_BASE := /devices/soc.0/
 -include vendor/cm/sepolicy/qcom/sepolicy.mk
 
 BOARD_SEPOLICY_DIRS += \
-    $(LOCAL_PATH)/sepolicy
+    device/samsung/heatqlte/sepolicy
+
+BOARD_SEPOLICY_UNION += \
+    audiod.te \
+    bluetooth_loader.te \
+    bluetooth.te \
+    file.te \
+    healthd.te \
+    init_shell.te \
+    init.te \
+    kernel.te \
+    keystore.te \
+    lmkd.te \
+    macloader.te \
+    mediaserver.te \
+    mm-qcamerad.te \
+    netd.te \
+    perfd.te \
+    platform_app.te \
+    property.te \
+    qmuxd.te \
+    qseecomd.te \
+    rfs_access.te \
+    rild.te \
+    rmt_storage.te \
+    shell.te \
+    surfaceflinger.te \
+    sysinit.te \
+    system_server.te \
+    time_daemon.te \
+    ueventd.te \
+    vold.te \
+    wcnss_service.te \
+    file_contexts \
+    property_contexts
 
 # Kernel
 TARGET_KERNEL_SOURCE := kernel/samsung/msm8916
