@@ -1,0 +1,2 @@
+#============= shell ==============
+allow shell block_device:dir search;

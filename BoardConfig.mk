@@ -15,10 +15,20 @@ TARGET_OTA_ASSERT_DEVICE := heatqlte,heatqltexx,g357fz,sm-g357fz
 TARGET_INIT_VENDOR_LIB := libinit_msm
 TARGET_PLATFORM_DEVICE_BASE := /devices/soc.0/
 
+# SELinux
+-include device/qcom/sepolicy/sepolicy.mk
+-include vendor/cm/sepolicy/sepolicy.mk
+-include vendor/cm/sepolicy/qcom/sepolicy.mk
+
+BOARD_SEPOLICY_DIRS += \
+    $(LOCAL_PATH)/sepolicy
+
 # Kernel
 TARGET_KERNEL_SOURCE := kernel/samsung/msm8916
 TARGET_KERNEL_CONFIG := msm8916_sec_defconfig
 TARGET_KERNEL_VARIANT_CONFIG := msm8916_sec_heatqlte_defconfig
+TARGET_KERNEL_SELINUX_CONFIG := selinux_defconfig
+TARGET_KERNEL_SELINUX_LOG_CONFIG := selinux_log_defconfig
 
 BOARD_CUSTOM_BOOTIMG_MK := $(LOCAL_PATH)/mkbootimg.mk
 BOARD_DTBTOOL_ARGS := -2
@@ -36,8 +46,7 @@ BOARD_KERNEL_CMDLINE += \
 	user_debug=31 \
 	msm_rtb.filter=0x3F \
 	ehci-hcd.park=3 \
-	androidboot.bootdevice=7824900.sdhci \
-	androidboot.selinux=permissive
+	androidboot.bootdevice=7824900.sdhci
 
 # Platform
 TARGET_ARCH := arm
@@ -89,7 +98,6 @@ BOARD_USES_ALSA_AUDIO := true
 BOARD_RIL_CLASS := ../../../$(LOCAL_PATH)/ril
 TARGET_RIL_VARIANT := caf
 BOARD_PROVIDES_LIBRIL := true
-BOARD_MODEM_TYPE := xmm7260
 PROTOBUF_SUPPORTED := true
 
 # Bluetooth
