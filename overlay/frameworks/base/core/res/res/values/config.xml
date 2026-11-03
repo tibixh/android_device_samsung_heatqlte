@@ -88,7 +88,7 @@
 
     <!-- Flag indicating whether we should enable the automatic brightness in Settings.
          config_hardware_automatic_brightness_available is not set, so we will use software implementation -->
-    <bool name="config_automatic_brightness_available">true</bool>
+    <bool name="config_automatic_brightness_available">false</bool>
 
     <!-- Array of light sensor LUX values to define our levels for auto backlight brightness support.
          The N entries of this array define N  1 zones as follows:
@@ -215,6 +215,14 @@
     <!-- Boolean indicating whether the wifi chipset has dual frequency band support -->
     <bool translatable="false" name="config_wifi_dual_band_support">false</bool>
 
+    <!-- Keep the supplicant's own auto-connect enabled.
+         When this is true the framework sends "STA_AUTOCONNECT 0" to
+         wpa_supplicant and relies on its own background scans to reconnect.
+         Those scans do not re-arm while the screen is off on this branch, so
+         an idle deauthentication leaves the device disconnected until the
+         screen is turned on again. -->
+    <bool translatable="true" name="config_wifi_framework_enable_associated_network_selection">false</bool>
+
     <!-- Boolean indicating if restoring network selection should be skipped -->
     <!-- The restoring is handled by modem if it is true-->
     <bool name="skip_restoring_network_selection">true</bool>
@@ -340,5 +348,8 @@
     <integer name="config_screenBrightnessDoze">10</integer>
     <string name="config_dozeComponent">com.android.systemui/com.android.systemui.doze.DozeService</string>
     <bool name="config_dozeAfterScreenOff">true</bool>
+
+    <!-- The modem does not report the SIM as present until the radio is powered on.-->
+    <bool name="config_hotswapCapable">true</bool>
 
 </resources>
