@@ -220,6 +220,10 @@ PRODUCT_PACKAGES += \
 PRODUCT_PACKAGES += \
 	power.qcom
 
+# Camera
+PRODUCT_PACKAGES += \
+	camera.msm8916 \
+	Camera2
 
 # FM
 PRODUCT_PACKAGES += \
