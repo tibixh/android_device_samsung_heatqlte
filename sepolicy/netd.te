@@ -1,3 +1,0 @@
-#============= netd ==============
-# netd probes /firmware (vfat) at boot
-allow netd vfat:dir search;

@@ -26,10 +26,14 @@ $(call inherit-product, device/samsung/heatqlte/device.mk)
 
 ## Device identifier. This must come after all inclusions
 PRODUCT_DEVICE := heatqlte
-PRODUCT_NAME := cm_heatqlte
+PRODUCT_NAME := lineage_heatqlte
 PRODUCT_BRAND := samsung
 PRODUCT_MODEL := SM-G357FZ
 PRODUCT_MANUFACTURER := samsung
 PRODUCT_CHARACTERISTICS := phone
 
 PRODUCT_GMS_CLIENTID_BASE := android-samsung
+
+# Resolution
+TARGET_SCREEN_WIDTH := 480
+TARGET_SCREEN_HEIGHT := 800

@@ -1,208 +1,36 @@
-# Time
-bin/time_daemon
-lib/libcommon_time_client.so
--vendor/lib/libtime_genoff.so
-vendor/lib/libTimeService.so
+# Samsung Package Version G357FZXXS1AQA9_G357FZOXX1AOH2_XEH (unless otherwise specified and/or tagged)
 
-# Graphics
-etc/firmware/a225_pfp.fw
-etc/firmware/a225_pm4.fw
-etc/firmware/a225p5_pm4.fw
-etc/firmware/a300_pfp.fw
-etc/firmware/a300_pm4.fw
-etc/firmware/a330_pfp.fw
-etc/firmware/a330_pm4.fw
-etc/firmware/a420_pfp.fw
-etc/firmware/a420_pm4.fw
-etc/firmware/leia_pfp_470.fw
-etc/firmware/leia_pm4_470.fw
-vendor/lib/egl/eglsubAndroid.so
-vendor/lib/egl/libEGL_adreno.so
-vendor/lib/egl/libGLESv1_CM_adreno.so
-vendor/lib/egl/libGLESv2_adreno.so
-vendor/lib/egl/libq3dtools_adreno.so
-vendor/lib/libC2D2.so
-vendor/lib/libCB.so
-vendor/lib/libOpenCL.so
-vendor/lib/libadreno_utils.so
-vendor/lib/libc2d30-a3xx.so
-vendor/lib/libc2d30-a4xx.so
-vendor/lib/libgsl.so
-vendor/lib/libllvm-qcom.so
-vendor/lib/libsc-a2xx.so
-vendor/lib/libsc-a3xx.so
-vendor/lib/libscale.so
+# ACDBs
+etc/Bluetooth_cal.acdb
+etc/General_cal.acdb
+etc/Global_cal.acdb
+etc/Handset_cal.acdb
+etc/Hdmi_cal.acdb
+etc/Headset_cal.acdb
+etc/Speaker_cal.acdb
 
-# Samsung connectivity
-lib/libsecnativefeature.so
-vendor/lib/libNimsWrap.so
-vendor/lib/libcneconn.so
-
-# Modem
-bin/rmt_storage
-bin/qmiproxy
-bin/qmuxd
-bin/radish
-bin/rfs_access
-bin/irsc_util
-vendor/lib/libcneapiclient.so
-vendor/lib/libCommandSvc.so
-vendor/lib/libconfigdb.so
-vendor/lib/libqmi_csi.so
-vendor/lib/libxml.so
-etc/plmn_se13.bin
-
-# RIL
-lib/libsec-ril.so
-vendor/lib/libqcci_legacy.so
-vendor/lib/libqmi.so
-vendor/lib/libril-qcril-hook-oem.so
-
-# Bluetooth
-bin/btnvtool
-bin/hci_qcomm_init
-vendor/lib/libbtnv.so
+# Camera
 
 # NFC
 lib/hw/nfc_nci.MSM8916.so
 vendor/firmware/sec_s3fwrn5_firmware.bin
 etc/sec_s3fwrn5_rfreg.bin
 
-# GPS
-lib/hw/gps.default.so
-lib/libloc_core.so
-lib/libloc_eng.so
-lib/libgps.utils.so
--lib/libloc_api_v02.so
-vendor/lib/hw/flp.default.so
-vendor/lib/libgeofence.so
-vendor/lib/libizat_core.so
-vendor/lib/liblbs_core.so
-vendor/lib/liblocationservice.so
-
-# Audio
-lib/libSamsungPreProcess.so
-lib/libsamsungRecord.so
-lib/lib_SamsungRec_V04002.so
-lib/libsamsungVoipResampler.so
-vendor/lib/libacdbmapper.so
-vendor/lib/libaudioalsa.so
-vendor/lib/liblistensoundmodel2.so
--vendor/lib/libqct_resampler.so
-vendor/lib/soundfx/libqcbassboost.so
-vendor/lib/soundfx/libqcreverb.so
-vendor/lib/soundfx/libqcvirt.so
-vendor/lib/libacdb-fts.so|gprimeltexx
-vendor/lib/libacdbloader.so|gprimeltexx
-vendor/lib/libacdbrtac.so|gprimeltexx
-vendor/lib/libadiertac.so|gprimeltexx
-vendor/lib/libaudcal.so|gprimeltexx
-
-# ACDB
-etc/Handset_cal.acdb
-etc/Hdmi_cal.acdb
-etc/Headset_cal.acdb
-etc/Speaker_cal.acdb
-etc/General_cal.acdb
-etc/Global_cal.acdb
-etc/Bluetooth_cal.acdb
-
-# ADSP
-bin/adsprpcd
-vendor/lib/libadsprpc.so
-
-# Media
-vendor/lib/libExtendedExtractor.so
-vendor/lib/libFlacSwDec.so
--vendor/lib/libHevcSwDecoder.so
-vendor/lib/libI420colorconvert.so
-vendor/lib/libmmqjpeg_codec.so
-vendor/lib/libmmjpeg.so
-vendor/lib/libmmosal.so
-vendor/lib/libDivxDrm.so
-vendor/lib/libmm-abl.so
-vendor/lib/libmm-abl-oem.so
-vendor/lib/libmm-color-convertor.so
-vendor/lib/libmm-disp-apis.so
-vendor/lib/libmm-hdcpmgr.so
-vendor/lib/libmmparser.so
-vendor/lib/libmm-qdcm.so
-vendor/lib/libOmxAacDec.so
-vendor/lib/libOmxEvrcDec.so
-vendor/lib/libOmxQcelp13Dec.so
-vendor/lib/libqomx_jpegdec.so
-vendor/lib/libqomx_jpegenc.so
-vendor/lib/libjpegehw.so
-vendor/lib/libjpegdhw.so
-lib/libjpega.so
-lib/libqomx_core.so
-vendor/media/LMspeed_508.emd
-vendor/media/PFFprec_600.emd
-lib/libdashplayer.so
-lib/libwvm.so
-
-# Qcom / DRM
-bin/qseecomd
-lib/libdrmdecrypt.so
-vendor/lib/libmmQSM.so
-vendor/lib/libmmrtpdecoder.so
-vendor/lib/libprdrmdecrypt.so
-vendor/lib/libtzdrmgenprov.so
-vendor/lib/libtzplayready.so
-vendor/lib/libQSEEComAPI.so
-vendor/lib/libqmi_cci.so
-vendor/lib/libqmi_encdec.so
-vendor/lib/libqmi_client_qmux.so
+# Qualcomm framework
 vendor/lib/libdiag.so
 vendor/lib/libdsutils.so
-vendor/lib/libmdmdetect.so
-vendor/lib/libqmiservices.so
 vendor/lib/libidl.so
+vendor/lib/libqcci_legacy.so
+vendor/lib/libqmi_cci.so
+vendor/lib/libqmi_client_qmux.so
 vendor/lib/libqmi_common_so.so
-vendor/lib/libdrmfs.so
-vendor/lib/librpmb.so
-vendor/lib/libssd.so
-vendor/lib/libdrmtime.so
-lib/libMcClient.so
-vendor/lib/libqti-perfd-client.so|gprimeltexx
+vendor/lib/libqmi_csi.so
+vendor/lib/libqmi_encdec.so
+vendor/lib/libqmiservices.so
+vendor/lib/libqmi.so
+
+# RIL
+lib/libsec-ril.so
 
 # Sensors
 lib/hw/sensors.msm8916.so
-
-# Camera
-etc/firmware/cpp_firmware_v1_1_1.fw
-etc/firmware/cpp_firmware_v1_1_6.fw
-etc/firmware/cpp_firmware_v1_2_0.fw
-etc/firmware/cpp_firmware_v1_4_0.fw
-bin/mm-qcamera-daemon
-lib/hw/camera.msm8916.so:lib/hw/camera.vendor.msm8916.so
-lib/libmmcamera2_stats_algorithm.so
-lib/libmmcamera_cac2_lib.so
-lib/libmmcamera_interface.so
-lib/libmmcamera_wavelet_lib.so
-lib/libmmjpeg_interface.so
-lib/libAfSingle.so
-lib/libTsAe.so
-lib/libTsAf.so
-lib/libTs_J_Accm.so
-lib/libTs_J_Awb.so
-vendor/lib/libmmcamera2_c2d_module.so
-vendor/lib/libmmcamera2_cpp_module.so
-vendor/lib/libmmcamera2_frame_algorithm.so
-vendor/lib/libmmcamera2_iface_modules.so
-vendor/lib/libmmcamera2_imglib_modules.so
-vendor/lib/libmmcamera2_isp_modules.so
-vendor/lib/libmmcamera2_is.so
-vendor/lib/libmmcamera2_pproc_modules.so
-vendor/lib/libmmcamera2_sensor_modules.so
-vendor/lib/libmmcamera2_stats_modules.so
-vendor/lib/libmmcamera2_vpe_module.so
-vendor/lib/libmmcamera2_wnr_module.so
-vendor/lib/libmmcamera_faceproc.so
-vendor/lib/libmmcamera_hdr_lib.so
-vendor/lib/libmmcamera_image_stab.so
-vendor/lib/libmmcamera_imglib.so
-vendor/lib/libmmcamera_s5k4ecgx.so
-vendor/lib/libmmcamera_sr130pc20.so
-vendor/lib/liboemcamera.so
-

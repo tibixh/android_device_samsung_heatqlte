@@ -1,108 +1,30 @@
 #!/bin/bash
+#
+# Copyright (C) 2016 The CyanogenMod Project
+# Copyright (C) 2017 The LineageOS Project
+#
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+#      http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+#
 
-DEVICE=heatqlte
-VENDOR=samsung
+set -e
 
-BASE=../../../vendor/$VENDOR/$DEVICE/proprietary
+# Required!
+export DEVICE=heatqlte
+export BOARD_COMMON=msm8916-common
+export VENDOR=samsung
 
-while getopts ":nhsd:" options
-do
-  case $options in
-    n ) NC=1 ;;
-    d ) LDIR=$OPTARG ;;
-    s ) SETUP=1 ;;
-    h ) echo "Usage: `basename $0` [OPTIONS] "
-        echo "  -n  No cleanup"
-        echo "  -d  Fetch blob from filesystem"
-        echo "  -s  Setup only, no extraction"
-        echo "  -h  Show this help"
-        exit ;;
-    * ) ;;
-  esac
-done
+export SETUP_DEVICE_DIR=1
+export SETUP_DEVICE_COMMON_DIR=0
+export SETUP_BOARD_COMMON_DIR=0
 
-if [ "x$NC" != "x1" ]; then
-  rm -rf "${BASE:?}"/*
-fi
-
-fetch_blob() {
-  local SRC=$1
-  local DST=$2
-  local SRC_DEVICE=$3
-
-  if [ -z "$LDIR" ]; then
-    adb pull "/system/$SRC" "$BASE/$DST"
-  else
-    cp -- "$LDIR/$SRC_DEVICE/system/$SRC" "$BASE/$DST"
-  fi
-}
-
-while IFS= read -r LINE || [ -n "$LINE" ]; do
-  LINE=${LINE%$'\r'}
-  LINE=${LINE%%#*}
-  LINE=${LINE#"${LINE%%[![:space:]]*}"}
-  LINE=${LINE%"${LINE##*[![:space:]]}"}
-
-  [ -z "$LINE" ] && continue
-
-  case "$LINE" in
-    -*) LINE=${LINE#-}
-        LINE=${LINE#"${LINE%%[![:space:]]*}"} ;;
-  esac
-
-  # Select source device
-  SRC_DEVICE=$DEVICE
-
-  case "$LINE" in
-    *'|'*)
-      SRC_DEVICE=${LINE##*|}
-      SRC_DEVICE=${SRC_DEVICE#"${SRC_DEVICE%%[![:space:]]*}"}
-      SRC_DEVICE=${SRC_DEVICE%"${SRC_DEVICE##*[![:space:]]}"}
-      LINE=${LINE%|*}
-      ;;
-  esac
-
-  FILE=${LINE%%:*}
-  if [ "$FILE" = "$LINE" ]; then
-    DEST=$FILE
-  else
-    DEST=${LINE#*:}
-    DEST=${DEST#"${DEST%%[![:space:]]*}"}
-    DEST=${DEST%"${DEST##*[![:space:]]}"}
-    [ -z "$DEST" ] && DEST=$FILE
-  fi
-
-  FILE=${FILE#"${FILE%%[![:space:]]*}"}
-  FILE=${FILE%"${FILE##*[![:space:]]}"}
-  [ -z "$FILE" ] && continue
-
-  mkdir -p -- "$BASE/$(dirname -- "$DEST")"
-
-  if [ "x$SETUP" != "x1" ]; then
-    if ! fetch_blob "$FILE" "$DEST" "$SRC_DEVICE"; then
-      if [ "$DEST" != "$FILE" ] && fetch_blob "$DEST" "$DEST" "$SRC_DEVICE"; then
-        :
-      else
-        echo "warning: failed to extract $FILE from $SRC_DEVICE" >&2
-      fi
-    fi
-  fi
-done < "../$DEVICE/proprietary-files.txt"
-
-# Patch camera HAL
-CAMERA_HAL="$BASE/lib/hw/camera.vendor.msm8916.so"
-if [ "x$SETUP" != "x1" ] && [ -f "$CAMERA_HAL" ]; then
-  if ! command -v patchelf >/dev/null 2>&1; then
-    echo "error: patchelf is required to retarget $CAMERA_HAL" >&2
-    exit 1
-  fi
-
-  if patchelf --print-needed "$CAMERA_HAL" | grep -qx 'libqc-opt.so'; then
-    patchelf --replace-needed libqc-opt.so libqti-perfd-client.so "$CAMERA_HAL"
-    printf "Patched camera.vendor.msm8916.so \n"
-  fi
-fi
-
-bash setup-makefiles.sh
-
-exit 0
+./../../$VENDOR/$BOARD_COMMON/extract-files.sh $@
