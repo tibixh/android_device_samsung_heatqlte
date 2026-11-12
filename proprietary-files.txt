@@ -1,20 +1,13 @@
 # Samsung Package Version G357FZXXS1AQA9_G357FZOXX1AOH2_XEH (unless otherwise specified and/or tagged)
 
-# ACDBs
-etc/Bluetooth_cal.acdb
-etc/General_cal.acdb
-etc/Global_cal.acdb
+# ACDB
 etc/Handset_cal.acdb
 etc/Hdmi_cal.acdb
 etc/Headset_cal.acdb
 etc/Speaker_cal.acdb
-
-# Camera
-
-# NFC
-lib/hw/nfc_nci.MSM8916.so
-vendor/firmware/sec_s3fwrn5_firmware.bin
-etc/sec_s3fwrn5_rfreg.bin
+etc/General_cal.acdb
+etc/Global_cal.acdb
+etc/Bluetooth_cal.acdb
 
 # Qualcomm framework
 vendor/lib/libdiag.so
