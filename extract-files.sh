@@ -27,4 +27,36 @@ export SETUP_DEVICE_DIR=1
 export SETUP_DEVICE_COMMON_DIR=0
 export SETUP_BOARD_COMMON_DIR=0
 
+MY_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+VENDOR_OUT="$MY_DIR/../../../vendor/$VENDOR/$DEVICE/proprietary"
+
+function blob_fixup() {
+    case "${1}" in
+        lib/hw/camera.vendor.msm8916.so)
+            patchelf --replace-needed libqc-opt.so libqti-perfd-client.so "${2}"
+            ;;
+    esac
+    return 0
+}
+
+function fixup_blobs() {
+    local LINE SPEC DEST
+    while read -r LINE; do
+        case "$LINE" in
+            ''|'#'*) continue ;;
+        esac
+        SPEC="${LINE%%|*}"
+        SPEC="${SPEC#-}"
+        case "$SPEC" in
+            *:*) DEST="${SPEC#*:}" ;;
+            *) DEST="$SPEC" ;;
+        esac
+        if [ -f "$VENDOR_OUT/$DEST" ]; then
+            blob_fixup "$DEST" "$VENDOR_OUT/$DEST"
+        fi
+    done < "$MY_DIR/proprietary-files.txt"
+}
+
 ./../../$VENDOR/$BOARD_COMMON/extract-files.sh $@
+
+fixup_blobs
