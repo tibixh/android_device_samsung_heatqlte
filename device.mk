@@ -1,9 +1,6 @@
 # Inherit from vendor
 $(call inherit-product-if-exists, vendor/samsung/heatqlte/heatqlte-vendor.mk)
 
-# RIL override before inheriting from common
-PRODUCT_PROPERTY_OVERRIDES += ro.telephony.ril_class=HeatqlteRIL
-
 # Inherit from common
 $(call inherit-product, device/samsung/msm8916-common/msm8916.mk)
 
@@ -11,6 +8,10 @@ $(call inherit-product, device/samsung/msm8916-common/msm8916.mk)
 $(call inherit-product, frameworks/native/build/phone-xhdpi-1024-dalvik-heap.mk)
 
 LOCAL_PATH := device/samsung/heatqlte
+
+# Init
+PRODUCT_PACKAGES += \
+    init.target.rc
 
 # Audio
 PRODUCT_COPY_FILES += \
