@@ -1,6 +1,9 @@
 # Inherit from vendor
 $(call inherit-product-if-exists, vendor/samsung/heatqlte/heatqlte-vendor.mk)
 
+# RIL override before inheriting from common
+PRODUCT_PROPERTY_OVERRIDES += ro.telephony.ril_class=HeatqlteRIL
+
 # Inherit from common
 $(call inherit-product, device/samsung/msm8916-common/msm8916.mk)
 
@@ -20,10 +23,6 @@ PRODUCT_COPY_FILES += \
 # Lights
 PRODUCT_PACKAGES += \
 	lights.msm8916
-
-# RIL
-PRODUCT_PACKAGES += \
-	libril_shim
 
 PRODUCT_COPY_FILES += \
 	frameworks/native/data/etc/android.hardware.telephony.cdma.xml:system/etc/permissions/android.hardware.telephony.cdma.xml \
