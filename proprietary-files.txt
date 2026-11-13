@@ -22,6 +22,11 @@ vendor/lib/libqmi_encdec.so
 vendor/lib/libqmiservices.so
 vendor/lib/libqmi.so
 
+# NFC
+lib/hw/nfc_nci.MSM8916.so
+vendor/firmware/sec_s3fwrn5_firmware.bin
+etc/sec_s3fwrn5_rfreg.bin
+
 # RIL
 lib/libsec-ril.so
 
