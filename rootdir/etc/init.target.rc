@@ -1,3 +1,7 @@
+on early-fs
+    # remove the ril_shim common sets as we wont need it for the oss ril.
+    export LD_SHIM_LIBS /system/lib/libcrypto.so|libboringssl-compat.so
+
 on property:sys.boot_completed=1
     # re-run link_ril_db as its start runs prematurely on a first boot.
     start link_ril_db
