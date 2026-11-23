@@ -1,3 +1,5 @@
+# NOTE: this branch in unfinished and deprecated
+
 # android_device_samsung_heatqlte
 
 ## Device tree for Samsung Galaxy Ace Style LTE SM-G357FZ [heatqlte]
