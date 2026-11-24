@@ -51,9 +51,5 @@ PRODUCT_COPY_FILES += \
 PRODUCT_PACKAGES += \
 	SamsungDoze
 
-# Substratum
-PRODUCT_PACKAGES += \
-	Substratum
-
 # Overlay
 DEVICE_PACKAGE_OVERLAYS := $(LOCAL_PATH)/overlay $(DEVICE_PACKAGE_OVERLAYS)
